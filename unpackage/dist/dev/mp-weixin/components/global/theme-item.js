@@ -2,8 +2,12 @@
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
 if (!Array) {
-  const _component_uni_icons = common_vendor.resolveComponent("uni-icons");
-  _component_uni_icons();
+  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
+  _easycom_uni_icons2();
+}
+const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
+if (!Math) {
+  _easycom_uni_icons();
 }
 const _sfc_main = {
   __name: "theme-item",
@@ -18,7 +22,7 @@ const _sfc_main = {
       return common_vendor.e({
         a: !__props.isMore
       }, !__props.isMore ? {
-        b: common_assets._imports_0$2
+        b: common_assets._imports_0$3
       } : {
         c: common_assets._imports_1,
         d: common_vendor.p({

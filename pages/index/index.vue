@@ -37,7 +37,7 @@
       </common-title>
       <view class="content">
         <theme-item v-for="item in 8" :key="item"></theme-item>
-        <theme-item :isMore="true" :key="item"></theme-item>
+        <theme-item :isMore="true"></theme-item>
       </view>
     </view>
   </view>
