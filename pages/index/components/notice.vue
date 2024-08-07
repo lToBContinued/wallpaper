@@ -1,16 +1,18 @@
 <template>
   <view class="notice">
     <view class="left">
-      <uni-icons type="sound-filled" size="20" color="#28b389"></uni-icons>
+      <uni-icons type="sound-filled" size="20"></uni-icons>
       <text class="text">公告</text>
     </view>
+
     <view class="center">
       <swiper vertical="true" autoplay="true" interval="1500" duration="300" circular="true">
         <swiper-item v-for="item in 4" :key="item">文字内容文字内容文字内容文字内容文字内 </swiper-item>
       </swiper>
     </view>
+
     <view class="right">
-      <uni-icons type="right" size="16" color="#28b389"></uni-icons>
+      <uni-icons type="right" size="16"></uni-icons>
     </view>
   </view>
 </template>
@@ -27,14 +29,20 @@
   border-radius: 80rpx;
   line-height: 80rpx;
 
+  .left,
+  .right {
+    @include flex-center;
+
+    :deep(.uni-icons) {
+      color: $brand-theme-color !important;
+    }
+  }
+
   .left {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 140rpx;
 
     .text {
-      color: #28b389;
+      color: $brand-theme-color;
       font-weight: 700;
       font-size: 28rpx;
     }
@@ -58,9 +66,6 @@
   }
 
   .right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 70rpx;
   }
 }

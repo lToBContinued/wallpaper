@@ -1,12 +1,13 @@
 <template>
   <view class="row" :style="{ borderBottom: bottomLine ? '1px solid #eee' : 'none' }">
     <view class="left">
-      <uni-icons :type="iconType" size="20" color="#28b389"></uni-icons>
+      <uni-icons :type="iconType" size="20"></uni-icons>
       <view class="text">{{ title }}</view>
     </view>
+
     <view class="right">
       <view class="text">{{ num }}</view>
-      <uni-icons type="right" size="15" color="#aaa"></uni-icons>
+      <uni-icons type="right" size="15"></uni-icons>
       <slot></slot>
     </view>
   </view>
@@ -41,6 +42,7 @@ defineProps({
   align-items: center;
   height: 100rpx;
   padding: 0 30rpx;
+  background-color: #fff;
 
   .left,
   .right {
@@ -50,6 +52,10 @@ defineProps({
     .text {
       padding-left: 10rpx;
       color: #666;
+    }
+
+    :deep(.uni-icons) {
+      color: $brand-theme-color !important;
     }
   }
 

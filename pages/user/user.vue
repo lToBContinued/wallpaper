@@ -1,5 +1,5 @@
 <template>
-  <view class="userLayout">
+  <view class="userLayout pageBg">
     <view class="userInfo">
       <view class="avatar">
         <image src="/static/images/avatar.png" mode="aspectFill"></image>
@@ -46,10 +46,8 @@ const clickContact = ()=>{
 <style scoped lang="scss">
 .userLayout {
   .userInfo {
-    display: flex;
+    @include flex-center;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 50rpx 0;
 
     .avatar {
@@ -90,7 +88,7 @@ const clickContact = ()=>{
     left: 0;
     width: 100%;
     height: 100rpx;
-    opacity: 0.7;
+    opacity: 0;
   }
 }
 </style>

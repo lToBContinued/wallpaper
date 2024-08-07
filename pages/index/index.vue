@@ -1,5 +1,5 @@
 <template>
-  <view class="homeLayout">
+  <view class="homeLayout pageBg">
     <!--顶部轮播图-->
     <banner></banner>
     <!--公告-->
@@ -11,7 +11,7 @@
         <template #name>每日推荐</template>
         <template #custom>
           <view class="date">
-            <uni-icons type="calendar" size="18" color="#28b389"></uni-icons>
+            <uni-icons type="calendar" size="18"></uni-icons>
             <view class="text">
               <uni-dateformat :date="Date.now()" format="dd日"></uni-dateformat>
             </view>
@@ -56,9 +56,15 @@ import ThemeItem from '../../components/global/theme-item.vue'
     padding-top: 50rpx;
 
     .date {
+      :deep(.uni-icons) {
+        color: $brand-theme-color !important;
+      }
+    }
+
+    .date {
       display: flex;
       align-items: center;
-      color: #28b389;
+      color: $brand-theme-color;
 
       .text {
         margin-left: 5rpx;
@@ -101,7 +107,7 @@ import ThemeItem from '../../components/global/theme-item.vue'
       color: #888;
     }
 
-    .content{
+    .content {
       display: grid;
       gap: 15rpx;
       grid-template-columns: repeat(3, 1fr);

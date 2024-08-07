@@ -39,9 +39,7 @@ defineProps({
     }
 
     .mask {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex-center;
       position: absolute;
       bottom: 0;
       left: 0;

@@ -22,8 +22,7 @@ const _sfc_main = {
       return {
         a: common_vendor.p({
           type: "calendar",
-          size: "18",
-          color: "#28b389"
+          size: "18"
         }),
         b: common_vendor.p({
           date: Date.now(),

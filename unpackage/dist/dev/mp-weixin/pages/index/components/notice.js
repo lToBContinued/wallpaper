@@ -13,8 +13,7 @@ function _sfc_render(_ctx, _cache) {
   return {
     a: common_vendor.p({
       type: "sound-filled",
-      size: "20",
-      color: "#28b389"
+      size: "20"
     }),
     b: common_vendor.f(4, (item, k0, i0) => {
       return {
@@ -23,8 +22,7 @@ function _sfc_render(_ctx, _cache) {
     }),
     c: common_vendor.p({
       type: "right",
-      size: "16",
-      color: "#28b389"
+      size: "16"
     })
   };
 }
