@@ -2,14 +2,12 @@
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
 if (!Array) {
-  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
-  const _easycom_uni_dateformat2 = common_vendor.resolveComponent("uni-dateformat");
-  (_easycom_uni_icons2 + _easycom_uni_dateformat2)();
+  const _component_uni_icons = common_vendor.resolveComponent("uni-icons");
+  const _component_uni_dateformat = common_vendor.resolveComponent("uni-dateformat");
+  (_component_uni_icons + _component_uni_dateformat)();
 }
-const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
-const _easycom_uni_dateformat = () => "../../uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.js";
 if (!Math) {
-  (Banner + Notice + _easycom_uni_icons + _easycom_uni_dateformat + CommonTitle + ThemeItem)();
+  (Banner + Notice + CommonTitle + ThemeItem)();
 }
 const CommonTitle = () => "../../components/global/common-title.js";
 const Banner = () => "./components/banner.js";
