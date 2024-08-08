@@ -16,7 +16,6 @@
 
 <script setup>
 import WallpaperInfo from './wallpaper-info.vue'
-import { getStatusBarHeight } from '@/utils/system'
 
 const goBack = () => {
   uni.navigateBack()

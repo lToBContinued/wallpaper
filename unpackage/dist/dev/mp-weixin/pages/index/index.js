@@ -1,6 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
+const api_index = require("../../api/index.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_dateformat2 = common_vendor.resolveComponent("uni-dateformat");
@@ -19,11 +19,26 @@ const CustomNavBar = () => "../../components/global/custom-nav-bar.js";
 const _sfc_main = {
   __name: "index",
   setup(__props) {
+    const dayRandomWallpaperList = common_vendor.ref([]);
+    const recommendList = common_vendor.ref([]);
     const goPreview = () => {
       common_vendor.index.navigateTo({
         url: "/pages/preview/preview"
       });
     };
+    const getDayRandomWallpaperList = async () => {
+      const res = await api_index.getDayRandomWallpaperListService();
+      dayRandomWallpaperList.value = res.data;
+    };
+    getDayRandomWallpaperList();
+    const getRecommendList = async () => {
+      const params = {
+        select: true
+      };
+      const res = await api_index.getRecommendListService(params);
+      recommendList.value = res.data;
+    };
+    getRecommendList();
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
@@ -37,20 +52,23 @@ const _sfc_main = {
           date: Date.now(),
           format: "dd日"
         }),
-        d: common_vendor.f(8, (item, k0, i0) => {
+        d: common_vendor.f(dayRandomWallpaperList.value, (item, k0, i0) => {
           return {
-            a: item,
-            b: common_vendor.o(goPreview, item)
+            a: item.smallPicurl,
+            b: item._id,
+            c: common_vendor.o(goPreview, item._id)
           };
         }),
-        e: common_assets._imports_0,
-        f: common_vendor.f(8, (item, k0, i0) => {
+        e: common_vendor.f(recommendList.value, (item, k0, i0) => {
           return {
-            a: item,
-            b: "1cf27b2a-7-" + i0
+            a: item._id,
+            b: "1cf27b2a-7-" + i0,
+            c: common_vendor.p({
+              item
+            })
           };
         }),
-        g: common_vendor.p({
+        f: common_vendor.p({
           isMore: true
         })
       };

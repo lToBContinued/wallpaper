@@ -7,8 +7,8 @@
 
     <view class="center">
       <swiper vertical="true" autoplay="true" interval="1500" duration="300" circular="true">
-        <swiper-item v-for="item in 4" :key="item">
-          <navigator url="/pages/notice/detail">文字内容文字内容文字内容文字内容文字内</navigator>
+        <swiper-item v-for="item in newsList" :key="item._id">
+          <navigator url="/pages/notice/detail">{{ item.title }}</navigator>
         </swiper-item>
       </swiper>
     </view>
@@ -19,7 +19,22 @@
   </view>
 </template>
 
-<script setup></script>
+<script setup>
+import { getNewsListService } from '/api'
+import { ref } from 'vue'
+
+const newsList = ref([]) // 公告列表
+
+// 获取公告列表
+const getNewList = async () => {
+  const params = {
+    select: true
+  }
+  const res = await getNewsListService(params)
+  newsList.value = res.data
+}
+getNewList()
+</script>
 
 <style scoped lang="scss">
 .notice {

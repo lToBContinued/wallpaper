@@ -18,12 +18,14 @@
 
 <script setup>
 import { ref } from 'vue'
-import { getBannerListService } from '@/api'
+import { getBannerListService } from '/api'
 
-const bannerList = ref([])
+const bannerList = ref([]) // 轮播图列表
+
+// 获取轮播图列表
 const getBannerList = async () => {
   const res = await getBannerListService()
-  bannerList.value = res.data.data
+  bannerList.value = res.data
 }
 getBannerList()
 </script>

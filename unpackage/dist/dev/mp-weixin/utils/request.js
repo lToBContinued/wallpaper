@@ -1,7 +1,7 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
 function request(config = {}) {
-  let { url, method = "GET", header = {} } = config;
+  let { url, method = "GET", header = {}, data = {} } = config;
   const baseURL = "https://tea.qingnian8.com/api/bizhi";
   url = baseURL + url;
   header["access-key"] = "seele123";
@@ -10,9 +10,10 @@ function request(config = {}) {
       url,
       method,
       header,
+      data,
       success: (res) => {
         if (res.data.errCode === 0) {
-          resolve(res);
+          resolve(res.data);
         } else if (res.data.errCode === 400) {
           common_vendor.index.showModal({
             title: "错误提示",

@@ -1,9 +1,9 @@
 <template>
   <view class="theme-item">
     <navigator v-if="!isMore" url="/pages/classlist/classlist" class="box">
-      <image class="pic" src="/common/images/classify1.jpg" mode="aspectFill"></image>
-      <view class="mask">明星美女</view>
-      <view class="tab">3天前更新</view>
+      <image class="pic" :src="item.picurl" mode="aspectFill"></image>
+      <view class="mask">{{ item.name }}</view>
+      <view class="tab">{{ compareTimestamp(item.updateTime) }}前更新</view>
     </navigator>
 
     <navigator v-else url="/pages/classify/classify" open-type="reLaunch" class="box more">
@@ -17,10 +17,22 @@
 </template>
 
 <script setup>
+import { compareTimestamp } from '/utils/common'
+
 defineProps({
   isMore: {
     type: Boolean,
     default: false
+  },
+  item: {
+    type: Object,
+    default: () => {
+      return {
+        name: '默认名称',
+        picurl: '../../common/images/classify1.jpg',
+        updateTime: Date.now() - 1000 * 60 * 60 * 5
+      }
+    }
   }
 })
 </script>

@@ -1,5 +1,5 @@
 export default function request(config = {}) {
-  let { url, method = 'GET', header={} } = config
+  let { url, method = 'GET', header = {}, data = {} } = config
   const baseURL = 'https://tea.qingnian8.com/api/bizhi' // 基地址
   url = baseURL + url
   header['access-key'] = 'seele123' // 请求头
@@ -9,9 +9,10 @@ export default function request(config = {}) {
       url,
       method,
       header,
-      success: res => {
+      data,
+      success: (res) => {
         if (res.data.errCode === 0) {
-          resolve(res)
+          resolve(res.data)
         } else if (res.data.errCode === 400) {
           uni.showModal({
             title: '错误提示',
@@ -26,7 +27,7 @@ export default function request(config = {}) {
           })
         }
       },
-      fail: err => {
+      fail: (err) => {
         reject(err)
       }
     })

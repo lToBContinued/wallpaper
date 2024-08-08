@@ -1,6 +1,6 @@
 "use strict";
 const common_vendor = require("../../../common/vendor.js");
-const _sfc_main = {};
+const api_index = require("../../../api/index.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   _easycom_uni_icons2();
@@ -9,22 +9,37 @@ const _easycom_uni_icons = () => "../../../uni_modules/uni-icons/components/uni-
 if (!Math) {
   _easycom_uni_icons();
 }
-function _sfc_render(_ctx, _cache) {
-  return {
-    a: common_vendor.p({
-      type: "sound-filled",
-      size: "20"
-    }),
-    b: common_vendor.f(4, (item, k0, i0) => {
-      return {
-        a: item
+const _sfc_main = {
+  __name: "notice",
+  setup(__props) {
+    const newsList = common_vendor.ref([]);
+    const getNewList = async () => {
+      const params = {
+        select: true
       };
-    }),
-    c: common_vendor.p({
-      type: "right",
-      size: "16"
-    })
-  };
-}
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-c772460e"]]);
+      const res = await api_index.getNewsListService(params);
+      newsList.value = res.data;
+    };
+    getNewList();
+    return (_ctx, _cache) => {
+      return {
+        a: common_vendor.p({
+          type: "sound-filled",
+          size: "20"
+        }),
+        b: common_vendor.f(newsList.value, (item, k0, i0) => {
+          return {
+            a: common_vendor.t(item.title),
+            b: item._id
+          };
+        }),
+        c: common_vendor.p({
+          type: "right",
+          size: "16"
+        })
+      };
+    };
+  }
+};
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-c772460e"]]);
 wx.createComponent(Component);

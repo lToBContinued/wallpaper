@@ -21,8 +21,8 @@
       </common-title>
       <view class="content">
         <scroll-view scroll-x="true">
-          <view class="box" v-for="item in 8" :key="item" @click="goPreview">
-            <image src="/common/images/preview_small.webp" mode="aspectFill"></image>
+          <view class="box" v-for="item in dayRandomWallpaperList" :key="item._id" @click="goPreview">
+            <image :src="item.smallPicurl" mode="aspectFill"></image>
           </view>
         </scroll-view>
       </view>
@@ -37,7 +37,7 @@
         </template>
       </common-title>
       <view class="content">
-        <theme-item v-for="item in 8" :key="item"></theme-item>
+        <theme-item v-for="item in recommendList" :key="item._id" :item="item"></theme-item>
         <theme-item :isMore="true"></theme-item>
       </view>
     </view>
@@ -45,25 +45,40 @@
 </template>
 
 <script setup>
-import CommonTitle from '@/components/global/common-title.vue'
+import { ref } from 'vue'
+import CommonTitle from '/components/global/common-title.vue'
 import Banner from './components/banner.vue'
 import Notice from './components/notice.vue'
-import ThemeItem from '@/components/global/theme-item.vue'
-import CustomNavBar from '@/components/global/custom-nav-bar.vue'
+import ThemeItem from '/components/global/theme-item.vue'
+import CustomNavBar from '/components/global/custom-nav-bar.vue'
+import { getRecommendListService, getDayRandomWallpaperListService } from '/api'
 
-
-
-
+const dayRandomWallpaperList = ref([]) // 每日推荐壁纸列表
+const recommendList = ref([]) // 专题精选列表
 
 // 跳转到预览页面
-const goPreview = ()=>{
+const goPreview = () => {
   uni.navigateTo({
-    url:'/pages/preview/preview'
+    url: '/pages/preview/preview'
   })
 }
 
+// 获取每日推荐壁纸
+const getDayRandomWallpaperList = async () => {
+  const res = await getDayRandomWallpaperListService()
+  dayRandomWallpaperList.value = res.data
+}
+getDayRandomWallpaperList()
 
-
+// 获取专题精选列表
+const getRecommendList = async () => {
+  const params = {
+    select: true
+  }
+  const res = await getRecommendListService(params)
+  recommendList.value = res.data
+}
+getRecommendList()
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,27 @@
-import request from '@/utils/request'
+import request from '/utils/request'
 
-export const getBannerListService = async ()=>{
+export const getBannerListService = async () => {
   return request({
-    url:'/homeBanner'
+    url: '/homeBanner'
+  })
+}
+
+export const getDayRandomWallpaperListService = () => {
+  return request({
+    url: '/randomWall'
+  })
+}
+
+export const getNewsListService = (data = {}) => {
+  return request({
+    url: '/wallNewsList',
+    data
+  })
+}
+
+export const getRecommendListService = (data) => {
+  return request({
+    url: '/classify',
+    data
   })
 }

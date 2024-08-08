@@ -7,7 +7,7 @@ const _sfc_main = {
     const bannerList = common_vendor.ref([]);
     const getBannerList = async () => {
       const res = await api_index.getBannerListService();
-      bannerList.value = res.data.data;
+      bannerList.value = res.data;
     };
     getBannerList();
     return (_ctx, _cache) => {
