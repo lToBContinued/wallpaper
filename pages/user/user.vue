@@ -9,8 +9,12 @@
     </view>
 
     <view class="section">
-      <info-list title="我的下载" iconType="download-filled" num="33"></info-list>
-      <info-list title="我的评分" iconType="star-filled" num="33"></info-list>
+      <navigator url="/pages/classlist/classlist">
+        <info-list title="我的下载" iconType="download-filled" num="33"></info-list>
+      </navigator>
+      <navigator url="/pages/classlist/classlist">
+        <info-list title="我的评分" iconType="star-filled" num="33"></info-list>
+      </navigator>
       <info-list title="联系客服" iconType="chatboxes-filled" :bottomLine="false">
         <template>
           <!-- #ifdef MP -->
@@ -36,7 +40,7 @@
 import InfoList from './components/info-list.vue'
 
 // 拨打电话
-const clickContact = ()=>{
+const clickContact = () => {
   uni.makePhoneCall({
     phoneNumber: '12345678901'
   })
