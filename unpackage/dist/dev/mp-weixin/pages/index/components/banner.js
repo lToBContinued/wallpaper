@@ -1,16 +1,26 @@
 "use strict";
 const common_vendor = require("../../../common/vendor.js");
-const common_assets = require("../../../common/assets.js");
-const _sfc_main = {};
-function _sfc_render(_ctx, _cache) {
-  return {
-    a: common_vendor.f(3, (item, k0, i0) => {
+const api_index = require("../../../api/index.js");
+const _sfc_main = {
+  __name: "banner",
+  setup(__props) {
+    const bannerList = common_vendor.ref([]);
+    const getBannerList = async () => {
+      const res = await api_index.getBannerListService();
+      bannerList.value = res.data.data;
+    };
+    getBannerList();
+    return (_ctx, _cache) => {
       return {
-        a: item
+        a: common_vendor.f(bannerList.value, (item, k0, i0) => {
+          return {
+            a: item.picurl,
+            b: item._id
+          };
+        })
       };
-    }),
-    b: common_assets._imports_0$4
-  };
-}
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-5addc23e"]]);
+    };
+  }
+};
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-5addc23e"]]);
 wx.createComponent(Component);

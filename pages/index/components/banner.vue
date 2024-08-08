@@ -9,14 +9,24 @@
       duration="1000"
       circular="true"
     >
-      <swiper-item v-for="item in 3" :key="item">
-        <image src="/common/images/banner1.jpg" mode="aspectFill"></image>
+      <swiper-item v-for="item in bannerList" :key="item._id">
+        <image :src="item.picurl" mode="aspectFill"></image>
       </swiper-item>
     </swiper>
   </view>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import { getBannerListService } from '@/api'
+
+const bannerList = ref([])
+const getBannerList = async () => {
+  const res = await getBannerListService()
+  bannerList.value = res.data.data
+}
+getBannerList()
+</script>
 
 <style scoped lang="scss">
 .banner {

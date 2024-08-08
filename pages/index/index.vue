@@ -51,11 +51,19 @@ import Notice from './components/notice.vue'
 import ThemeItem from '@/components/global/theme-item.vue'
 import CustomNavBar from '@/components/global/custom-nav-bar.vue'
 
+
+
+
+
+// 跳转到预览页面
 const goPreview = ()=>{
   uni.navigateTo({
     url:'/pages/preview/preview'
   })
 }
+
+
+
 </script>
 
 <style lang="scss" scoped>
