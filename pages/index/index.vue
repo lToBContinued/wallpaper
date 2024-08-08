@@ -1,5 +1,6 @@
 <template>
   <view class="homeLayout pageBg">
+    <custom-nav-bar title="推荐"></custom-nav-bar>
     <!--顶部轮播图-->
     <banner></banner>
     <!--公告-->
@@ -20,7 +21,7 @@
       </common-title>
       <view class="content">
         <scroll-view scroll-x="true">
-          <view class="box" v-for="item in 8" :key="item">
+          <view class="box" v-for="item in 8" :key="item" @click="goPreview">
             <image src="/common/images/preview_small.webp" mode="aspectFill"></image>
           </view>
         </scroll-view>
@@ -44,10 +45,17 @@
 </template>
 
 <script setup>
-import CommonTitle from '../../components/global/common-title.vue'
+import CommonTitle from '@/components/global/common-title.vue'
 import Banner from './components/banner.vue'
 import Notice from './components/notice.vue'
-import ThemeItem from '../../components/global/theme-item.vue'
+import ThemeItem from '@/components/global/theme-item.vue'
+import CustomNavBar from '@/components/global/custom-nav-bar.vue'
+
+const goPreview = ()=>{
+  uni.navigateTo({
+    url:'/pages/preview/preview'
+  })
+}
 </script>
 
 <style lang="scss" scoped>

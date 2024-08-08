@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "navigationStyle": "custom",
   "usingComponents": {
-    "theme-item": "../../components/global/theme-item"
+    "theme-item": "../../components/global/theme-item",
+    "custom-nav-bar": "../../components/global/custom-nav-bar"
   }
 }

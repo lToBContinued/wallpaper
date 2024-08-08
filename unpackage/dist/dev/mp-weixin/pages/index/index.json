@@ -7,6 +7,7 @@
     "common-title": "../../components/global/common-title",
     "banner": "./components/banner",
     "notice": "./components/notice",
-    "theme-item": "../../components/global/theme-item"
+    "theme-item": "../../components/global/theme-item",
+    "custom-nav-bar": "../../components/global/custom-nav-bar"
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <view class="classLayout pageBg">
+    <custom-nav-bar title="分类"></custom-nav-bar>
     <view class="classify">
       <theme-item v-for="item in 15" :key="item"></theme-item>
     </view>
@@ -7,7 +8,8 @@
 </template>
 
 <script setup>
-import ThemeItem from '../../components/global/theme-item.vue'
+import ThemeItem from '@/components/global/theme-item.vue'
+import CustomNavBar from '@/components/global/custom-nav-bar.vue'
 </script>
 
 <style scoped lang="scss">

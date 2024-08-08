@@ -1,6 +1,8 @@
 <template>
   <view class="imageMask">
-    <view class="go-back"></view>
+    <view class="go-back" :style="{ top: getStatusBarHeight() + 'px' }" @click="goBack">
+      <uni-icons type="back" color="#fff" size="20"></uni-icons>
+    </view>
     <view class="count">3&nbsp;/&nbsp;9</view>
     <view class="time">
       <uni-dateformat :date="new Date()" format="hh:mm"></uni-dateformat>
@@ -14,6 +16,11 @@
 
 <script setup>
 import WallpaperInfo from './wallpaper-info.vue'
+import { getStatusBarHeight } from '@/utils/system'
+
+const goBack = () => {
+  uni.navigateBack()
+}
 </script>
 
 <style scoped lang="scss">
@@ -32,6 +39,16 @@ import WallpaperInfo from './wallpaper-info.vue'
   }
 
   .go-back {
+    @include flex-center;
+    left: 60rpx;
+    top: 0;
+    width: 76rpx;
+    height: 76rpx;
+    margin-left: 0;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10rpx);
   }
 
   .count {

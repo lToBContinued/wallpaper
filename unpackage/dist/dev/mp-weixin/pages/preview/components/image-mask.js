@@ -1,24 +1,37 @@
 "use strict";
 const common_vendor = require("../../../common/vendor.js");
+const utils_system = require("../../../utils/system.js");
 if (!Array) {
+  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_dateformat2 = common_vendor.resolveComponent("uni-dateformat");
-  _easycom_uni_dateformat2();
+  (_easycom_uni_icons2 + _easycom_uni_dateformat2)();
 }
+const _easycom_uni_icons = () => "../../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
 const _easycom_uni_dateformat = () => "../../../uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.js";
 if (!Math) {
-  (_easycom_uni_dateformat + WallpaperInfo)();
+  (_easycom_uni_icons + _easycom_uni_dateformat + WallpaperInfo)();
 }
 const WallpaperInfo = () => "./wallpaper-info.js";
 const _sfc_main = {
   __name: "image-mask",
   setup(__props) {
+    const goBack = () => {
+      common_vendor.index.navigateBack();
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
+          type: "back",
+          color: "#fff",
+          size: "20"
+        }),
+        b: common_vendor.unref(utils_system.getStatusBarHeight)() + "px",
+        c: common_vendor.o(goBack),
+        d: common_vendor.p({
           date: /* @__PURE__ */ new Date(),
           format: "hh:mm"
         }),
-        b: common_vendor.p({
+        e: common_vendor.p({
           date: /* @__PURE__ */ new Date(),
           format: "MM月dd日"
         })
