@@ -35,10 +35,11 @@ const _sfc_main = {
       }, !__props.isMore ? {
         b: __props.item.picurl,
         c: common_vendor.t(__props.item.name),
-        d: common_vendor.t(common_vendor.unref(utils_common.compareTimestamp)(__props.item.updateTime))
+        d: common_vendor.t(common_vendor.unref(utils_common.compareTimestamp)(__props.item.updateTime)),
+        e: `/pages/classlist/classlist?classid=${__props.item._id}&name=${__props.item.name}`
       } : {
-        e: common_assets._imports_0$3,
-        f: common_vendor.p({
+        f: common_assets._imports_0$2,
+        g: common_vendor.p({
           type: "more-filled",
           size: "34",
           color: "#fff"

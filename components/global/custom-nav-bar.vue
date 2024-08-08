@@ -16,9 +16,9 @@
 </template>
 
 <script setup>
-import { getStatusBarHeight, getTitleBarHeight, getFillHeight, getLeftIconLeft } from '@/utils/system'
+import { getStatusBarHeight, getTitleBarHeight, getFillHeight, getLeftIconLeft } from '/utils/system'
 
-defineProps({
+const props = defineProps({
   title:{
     type: String,
     default: '壁纸'

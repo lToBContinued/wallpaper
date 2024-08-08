@@ -1,5 +1,6 @@
 <template>
   <view class="userLayout pageBg">
+    <view class="status-bar" :style="{ height: getStatusBarHeight() + 'px' }"></view>
     <view class="userInfo">
       <view class="avatar">
         <image src="/static/images/avatar.png" mode="aspectFill"></image>
@@ -38,6 +39,7 @@
 
 <script setup>
 import InfoList from './components/info-list.vue'
+import { getStatusBarHeight } from '/utils/system'
 
 // 拨打电话
 const clickContact = () => {

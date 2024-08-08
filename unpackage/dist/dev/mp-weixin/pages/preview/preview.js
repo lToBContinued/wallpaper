@@ -20,7 +20,7 @@ const _sfc_main = {
             b: item
           };
         }),
-        b: common_assets._imports_0$2,
+        b: common_assets._imports_0$1,
         c: maskState.value
       };
     };

@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../../common/vendor.js");
+const utils_system = require("../../../utils/system.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_dateformat2 = common_vendor.resolveComponent("uni-dateformat");
@@ -24,7 +25,7 @@ const _sfc_main = {
           color: "#fff",
           size: "20"
         }),
-        b: _ctx.getStatusBarHeight() + "px",
+        b: common_vendor.unref(utils_system.getStatusBarHeight)() + "px",
         c: common_vendor.o(goBack),
         d: common_vendor.p({
           date: /* @__PURE__ */ new Date(),
