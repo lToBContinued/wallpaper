@@ -6,16 +6,10 @@ if (!Math) {
   "./pages/classify/classify.js";
   "./pages/user/user.js";
   "./pages/classlist/classlist.js";
+  "./pages/preview/preview.js";
 }
 const _sfc_main = {
   onLaunch: function() {
-    console.log("App Launch");
-  },
-  onShow: function() {
-    console.log("App Show");
-  },
-  onHide: function() {
-    console.log("App Hide");
   }
 };
 function createApp() {

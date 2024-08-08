@@ -1,0 +1,46 @@
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.imageMask.data-v-f3cfe566 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.imageMask > view.data-v-f3cfe566 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: -webkit-fit-content;
+  width: fit-content;
+  color: #fff;
+}
+.imageMask .count.data-v-f3cfe566 {
+  top: 10vh;
+  padding: 8rpx 28rpx;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 40rpx;
+  -webkit-backdrop-filter: blur(10rpx);
+          backdrop-filter: blur(10rpx);
+  font-size: 28rpx;
+}
+.imageMask .time.data-v-f3cfe566 {
+  top: calc(10vh + 80rpx);
+  font-size: 140rpx;
+  line-height: 1em;
+  text-shadow: 0 4rpx rgba(0, 0, 0, 0.3);
+}
+.imageMask .date.data-v-f3cfe566 {
+  font-size: 34rpx;
+  top: calc(10vh + 230rpx);
+  text-shadow: 0 2rpx rgba(0, 0, 0, 0.3);
+}
