@@ -4,7 +4,7 @@
       <uni-icons type="info" size="24"></uni-icons>
       <view class="text">信息</view>
     </view>
-    <view class="box">
+    <view class="box" @click="giveScore">
       <uni-icons type="star" size="24"></uni-icons>
       <view class="text">5分</view>
     </view>
@@ -14,14 +14,14 @@
     </view>
   </view>
 
-  <!--弹出层-->
+  <!--图片信息弹出层-->
   <uni-popup ref="infoPopup" type="bottom">
     <view class="info-popup">
       <view class="pop-header">
         <view></view>
         <view class="title">壁纸信息</view>
         <view class="close">
-          <uni-icons type="closeempty" size="18" color="#999" @click="closePopup"></uni-icons>
+          <uni-icons type="closeempty" size="18" color="#999" @click="closeInfoPopup"></uni-icons>
         </view>
       </view>
 
@@ -60,20 +60,53 @@
       </scroll-view>
     </view>
   </uni-popup>
+
+  <!--评分弹出层-->
+  <uni-popup ref="scorePopup" :is-mask-click="false">
+    <view class="score-popup">
+      <view class="pop-header">
+        <view></view>
+        <view class="title">壁纸评分</view>
+        <view class="close">
+          <uni-icons type="closeempty" size="18" color="#999" @click="closeScorePopup"></uni-icons>
+        </view>
+      </view>
+      <view class="content">
+        <uni-rate touchable v-model="userScore" size="20" allowHalf></uni-rate>
+        <text class="text">{{ userScore }}分</text>
+      </view>
+      <view class="footer">
+        <button type="default" size="mini" plain="true" :disabled="!userScore" @click="submitScore">确认评分</button>
+      </view>
+    </view>
+  </uni-popup>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
 const infoPopup = ref(null)
+const scorePopup = ref(null)
+const userScore = ref(0)
+
 // 打开信息弹出层
 const checkDetail = () => {
   infoPopup.value.open()
 }
 // 关闭信息弹出层
-const closePopup = () => {
+const closeInfoPopup = () => {
   infoPopup.value.close()
 }
+// 打开评分弹出层
+const giveScore = () => {
+  scorePopup.value.open()
+}
+// 关闭评分弹出层
+const closeScorePopup = () => {
+  scorePopup.value.close()
+}
+// 确认评分
+const submitScore = () => {}
 </script>
 
 <style scoped lang="scss">
@@ -104,26 +137,26 @@ const closePopup = () => {
   }
 }
 
+.pop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .title {
+    color: $text-font-color-2;
+    font-size: 26rpx;
+  }
+
+  .close {
+    padding: 6rpx;
+  }
+}
+
 .info-popup {
   padding: 30rpx;
   background-color: #fff;
   border-radius: 30rpx 30rpx 0 0;
   overflow: hidden;
-
-  .pop-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .title {
-      color: $text-font-color-2;
-      font-size: 26rpx;
-    }
-
-    .close {
-      padding: 6rpx;
-    }
-  }
 
   scroll-view {
     max-height: 60vh;
@@ -178,6 +211,31 @@ const closePopup = () => {
         }
       }
     }
+  }
+}
+
+.score-popup {
+  width: 70vw;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+
+  .content {
+    @include flex-center;
+    padding: 30rpx 0;
+
+    .text {
+      width: 80rpx;
+      padding-left: 10rpx;
+      color: #ffca3e;
+      line-height: 1em;
+      text-align: right;
+    }
+  }
+
+  .footer {
+    @include flex-center;
+    padding: 10rpx 0;
   }
 }
 </style>

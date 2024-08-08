@@ -16,11 +16,21 @@ const _sfc_main = {
   __name: "wallpaper-info",
   setup(__props) {
     const infoPopup = common_vendor.ref(null);
+    const scorePopup = common_vendor.ref(null);
+    const userScore = common_vendor.ref(0);
     const checkDetail = () => {
       infoPopup.value.open();
     };
-    const closePopup = () => {
+    const closeInfoPopup = () => {
       infoPopup.value.close();
+    };
+    const giveScore = () => {
+      scorePopup.value.open();
+    };
+    const closeScorePopup = () => {
+      scorePopup.value.close();
+    };
+    const submitScore = () => {
     };
     return (_ctx, _cache) => {
       return {
@@ -33,32 +43,55 @@ const _sfc_main = {
           type: "star",
           size: "24"
         }),
-        d: common_vendor.p({
+        d: common_vendor.o(giveScore),
+        e: common_vendor.p({
           type: "download",
           size: "24"
         }),
-        e: common_vendor.o(closePopup),
-        f: common_vendor.p({
+        f: common_vendor.o(closeInfoPopup),
+        g: common_vendor.p({
           type: "closeempty",
           size: "18",
           color: "#999"
         }),
-        g: common_vendor.p({
+        h: common_vendor.p({
           readonly: true,
           touchable: true,
           value: "3",
           size: "16"
         }),
-        h: common_vendor.f(3, (item, k0, i0) => {
+        i: common_vendor.f(3, (item, k0, i0) => {
           return {
             a: item
           };
         }),
-        i: common_vendor.sr(infoPopup, "5acf9712-3", {
+        j: common_vendor.sr(infoPopup, "5acf9712-3", {
           "k": "infoPopup"
         }),
-        j: common_vendor.p({
+        k: common_vendor.p({
           type: "bottom"
+        }),
+        l: common_vendor.o(closeScorePopup),
+        m: common_vendor.p({
+          type: "closeempty",
+          size: "18",
+          color: "#999"
+        }),
+        n: common_vendor.o(($event) => userScore.value = $event),
+        o: common_vendor.p({
+          touchable: true,
+          size: "20",
+          allowHalf: true,
+          modelValue: userScore.value
+        }),
+        p: common_vendor.t(userScore.value),
+        q: !userScore.value,
+        r: common_vendor.o(submitScore),
+        s: common_vendor.sr(scorePopup, "5acf9712-6", {
+          "k": "scorePopup"
+        }),
+        t: common_vendor.p({
+          ["is-mask-click"]: false
         })
       };
     };
