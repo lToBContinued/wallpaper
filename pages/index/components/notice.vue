@@ -7,7 +7,9 @@
 
     <view class="center">
       <swiper vertical="true" autoplay="true" interval="1500" duration="300" circular="true">
-        <swiper-item v-for="item in 4" :key="item">文字内容文字内容文字内容文字内容文字内 </swiper-item>
+        <swiper-item v-for="item in 4" :key="item">
+          <navigator url="/pages/notice/detail">文字内容文字内容文字内容文字内容文字内</navigator>
+        </swiper-item>
       </swiper>
     </view>
 
