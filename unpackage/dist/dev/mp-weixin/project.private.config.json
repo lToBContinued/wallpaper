@@ -3,6 +3,7 @@
   "projectname": "wallpaper",
   "setting": {
     "compileHotReLoad": true,
+    "bigPackageSizeSupport": false,
     "urlCheck": false
   }
 }

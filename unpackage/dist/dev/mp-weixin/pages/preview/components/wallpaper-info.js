@@ -87,6 +87,64 @@ const _sfc_main = {
         closeScorePopup();
       }
     };
+    const downloadPic = () => {
+      common_vendor.index.showLoading({
+        title: "全力下载中~",
+        mask: true
+      });
+      common_vendor.index.getImageInfo({
+        src: props.currentInfo.picUrl,
+        success: (res) => {
+          common_vendor.index.saveImageToPhotosAlbum({
+            filePath: res.path,
+            // 同意授权
+            success: () => {
+              common_vendor.index.showToast({
+                title: "保存成功",
+                icon: "none"
+              });
+            },
+            // 不同意授权
+            fail: (err) => {
+              if (err.errMsg === "saveImageToPhotosAlbum:fail cancel") {
+                common_vendor.index.showToast({
+                  title: "保存失败，请重新点击下载",
+                  icon: "none"
+                });
+                return;
+              }
+              common_vendor.index.showModal({
+                title: "提示",
+                content: "需要授权相册权限",
+                success: (res2) => {
+                  if (res2.confirm) {
+                    common_vendor.index.openSetting({
+                      success: (setting) => {
+                        console.log(setting);
+                        if (setting.authSetting["scope.writePhotosAlbum"]) {
+                          common_vendor.index.showToast({
+                            title: "获取授权成功",
+                            icon: "none"
+                          });
+                        } else {
+                          common_vendor.index.showToast({
+                            title: "获取授权失败",
+                            icon: "none"
+                          });
+                        }
+                      }
+                    });
+                  }
+                }
+              });
+            },
+            complete: () => {
+              common_vendor.index.hideLoading();
+            }
+          });
+        }
+      });
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
@@ -104,44 +162,45 @@ const _sfc_main = {
           type: "download",
           size: "24"
         }),
-        g: common_vendor.o(closeInfoPopup),
-        h: common_vendor.p({
+        g: common_vendor.o(downloadPic),
+        h: common_vendor.o(closeInfoPopup),
+        i: common_vendor.p({
           type: "closeempty",
           size: "18",
           color: "#999"
         }),
-        i: common_vendor.t(__props.currentInfo._id),
-        j: common_vendor.t(__props.wallPaperClass),
-        k: common_vendor.t(__props.currentInfo.nickname),
-        l: common_vendor.p({
+        j: common_vendor.t(__props.currentInfo._id),
+        k: common_vendor.t(__props.wallPaperClass),
+        l: common_vendor.t(__props.currentInfo.nickname),
+        m: common_vendor.p({
           readonly: true,
           touchable: true,
           value: __props.currentInfo.score,
           size: "16"
         }),
-        m: common_vendor.t(__props.currentInfo.score),
-        n: common_vendor.t(__props.currentInfo.description),
-        o: common_vendor.f(__props.currentInfo.tabs, (item, k0, i0) => {
+        n: common_vendor.t(__props.currentInfo.score),
+        o: common_vendor.t(__props.currentInfo.description),
+        p: common_vendor.f(__props.currentInfo.tabs, (item, k0, i0) => {
           return {
             a: common_vendor.t(item),
             b: item
           };
         }),
-        p: common_vendor.sr(infoPopup, "5acf9712-3", {
+        q: common_vendor.sr(infoPopup, "5acf9712-3", {
           "k": "infoPopup"
         }),
-        q: common_vendor.p({
+        r: common_vendor.p({
           type: "bottom"
         }),
-        r: common_vendor.t(isScore.value ? "评分过了~" : "壁纸评分"),
-        s: common_vendor.o(closeScorePopup),
-        t: common_vendor.p({
+        s: common_vendor.t(isScore.value ? "评分过了~" : "壁纸评分"),
+        t: common_vendor.o(closeScorePopup),
+        v: common_vendor.p({
           type: "closeempty",
           size: "18",
           color: "#999"
         }),
-        v: common_vendor.o(($event) => userScore.value = $event),
-        w: common_vendor.p({
+        w: common_vendor.o(($event) => userScore.value = $event),
+        x: common_vendor.p({
           touchable: true,
           size: "20",
           allowHalf: true,
@@ -149,13 +208,13 @@ const _sfc_main = {
           ["disabled-color"]: "#ffca3e",
           modelValue: userScore.value
         }),
-        x: common_vendor.t(userScore.value),
-        y: isScore.value,
-        z: common_vendor.o(submitScore),
-        A: common_vendor.sr(scorePopup, "5acf9712-6", {
+        y: common_vendor.t(userScore.value),
+        z: isScore.value,
+        A: common_vendor.o(submitScore),
+        B: common_vendor.sr(scorePopup, "5acf9712-6", {
           "k": "scorePopup"
         }),
-        B: common_vendor.p({
+        C: common_vendor.p({
           ["is-mask-click"]: false
         })
       };
