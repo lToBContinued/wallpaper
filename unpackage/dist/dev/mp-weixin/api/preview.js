@@ -6,4 +6,11 @@ const getSetupScoreService = (data) => {
     data
   });
 };
+const getDownloadRecordService = (data) => {
+  return utils_request.request({
+    url: "/downloadWall",
+    data
+  });
+};
+exports.getDownloadRecordService = getDownloadRecordService;
 exports.getSetupScoreService = getSetupScoreService;

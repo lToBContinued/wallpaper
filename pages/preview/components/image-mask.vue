@@ -11,6 +11,7 @@
       <uni-dateformat :date="new Date()" format="MM月dd日"></uni-dateformat>
     </view>
     <wallpaper-info
+      v-if="currentInfo"
       :currentInfo="currentInfo"
       :wallPaperClass="wallPaperClass"
       :classList="classList"

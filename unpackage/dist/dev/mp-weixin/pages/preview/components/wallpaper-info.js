@@ -87,63 +87,75 @@ const _sfc_main = {
         closeScorePopup();
       }
     };
-    const downloadPic = () => {
-      common_vendor.index.showLoading({
-        title: "全力下载中~",
-        mask: true
-      });
-      common_vendor.index.getImageInfo({
-        src: props.currentInfo.picUrl,
-        success: (res) => {
-          common_vendor.index.saveImageToPhotosAlbum({
-            filePath: res.path,
-            // 同意授权
-            success: () => {
-              common_vendor.index.showToast({
-                title: "保存成功",
-                icon: "none"
-              });
-            },
-            // 不同意授权
-            fail: (err) => {
-              if (err.errMsg === "saveImageToPhotosAlbum:fail cancel") {
+    const downloadPic = async () => {
+      try {
+        common_vendor.index.showLoading({
+          title: "全力下载中~",
+          mask: true
+        });
+        const params = {
+          classid: props.currentInfo.classid,
+          wallId: props.currentInfo._id
+        };
+        const res = await api_preview.getDownloadRecordService(params);
+        if (res.errCode !== 0)
+          throw res;
+        common_vendor.index.getImageInfo({
+          src: props.currentInfo.picUrl,
+          success: (res2) => {
+            common_vendor.index.saveImageToPhotosAlbum({
+              filePath: res2.path,
+              // 同意授权
+              success: () => {
                 common_vendor.index.showToast({
-                  title: "保存失败，请重新点击下载",
+                  title: "保存成功",
                   icon: "none"
                 });
-                return;
-              }
-              common_vendor.index.showModal({
-                title: "提示",
-                content: "需要授权相册权限",
-                success: (res2) => {
-                  if (res2.confirm) {
-                    common_vendor.index.openSetting({
-                      success: (setting) => {
-                        console.log(setting);
-                        if (setting.authSetting["scope.writePhotosAlbum"]) {
-                          common_vendor.index.showToast({
-                            title: "获取授权成功",
-                            icon: "none"
-                          });
-                        } else {
-                          common_vendor.index.showToast({
-                            title: "获取授权失败",
-                            icon: "none"
-                          });
-                        }
-                      }
-                    });
-                  }
+              },
+              // 不同意授权
+              fail: (err) => {
+                if (err.errMsg === "saveImageToPhotosAlbum:fail cancel") {
+                  common_vendor.index.showToast({
+                    title: "保存失败，请重新点击下载",
+                    icon: "none"
+                  });
+                  return;
                 }
-              });
-            },
-            complete: () => {
-              common_vendor.index.hideLoading();
-            }
-          });
-        }
-      });
+                common_vendor.index.showModal({
+                  title: "提示",
+                  content: "需要授权相册权限",
+                  success: (res3) => {
+                    if (res3.confirm) {
+                      common_vendor.index.openSetting({
+                        success: (setting) => {
+                          console.log(setting);
+                          if (setting.authSetting["scope.writePhotosAlbum"]) {
+                            common_vendor.index.showToast({
+                              title: "获取授权成功",
+                              icon: "none"
+                            });
+                          } else {
+                            common_vendor.index.showToast({
+                              title: "获取授权失败",
+                              icon: "none"
+                            });
+                          }
+                        }
+                      });
+                    }
+                  }
+                });
+              },
+              complete: () => {
+                common_vendor.index.hideLoading();
+              }
+            });
+          }
+        });
+      } catch (err) {
+        console.dir(err);
+        common_vendor.index.hideLoading();
+      }
     };
     return (_ctx, _cache) => {
       return {

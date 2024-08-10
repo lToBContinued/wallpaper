@@ -45,7 +45,7 @@ const _sfc_main = {
       common_vendor.index.navigateBack();
     };
     return (_ctx, _cache) => {
-      return {
+      return common_vendor.e({
         a: common_vendor.p({
           type: "back",
           color: "#fff",
@@ -63,13 +63,15 @@ const _sfc_main = {
           date: /* @__PURE__ */ new Date(),
           format: "MM月dd日"
         }),
-        h: common_vendor.p({
+        h: __props.currentInfo
+      }, __props.currentInfo ? {
+        i: common_vendor.p({
           currentInfo: __props.currentInfo,
           wallPaperClass: __props.wallPaperClass,
           classList: __props.classList,
           currentIndex: __props.currentIndex
         })
-      };
+      } : {});
     };
   }
 };
