@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 if (!Math) {
   ImageMask();
 }
@@ -9,19 +8,42 @@ const _sfc_main = {
   __name: "preview",
   setup(__props) {
     const maskState = common_vendor.ref(true);
+    const classList = common_vendor.ref([]);
+    const currentId = common_vendor.ref(null);
+    const currentIndex = common_vendor.ref(0);
+    common_vendor.onLoad((e) => {
+      currentId.value = e.id;
+      currentIndex.value = classList.value.findIndex((item) => item._id === currentId.value);
+    });
+    const storageClassList = common_vendor.index.getStorageSync("storageClassList") || [];
+    classList.value = storageClassList.map((item) => {
+      return {
+        ...item,
+        picUrl: item.smallPicurl.replace("_small.webp", ".jpg")
+      };
+    });
+    const swiperChange = (e) => {
+      currentIndex.value = e.detail.current;
+    };
     const maskChange = () => {
       maskState.value = !maskState.value;
     };
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.f(5, (item, k0, i0) => {
+        a: common_vendor.f(classList.value, (item, k0, i0) => {
           return {
-            a: common_vendor.o(maskChange, item),
-            b: item
+            a: item.picUrl,
+            b: common_vendor.o(maskChange, item._id),
+            c: item._id
           };
         }),
-        b: common_assets._imports_0$1,
-        c: maskState.value
+        b: currentIndex.value,
+        c: common_vendor.o(swiperChange),
+        d: maskState.value,
+        e: common_vendor.p({
+          classList: classList.value,
+          currentIndex: currentIndex.value
+        })
       };
     };
   }

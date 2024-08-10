@@ -6,7 +6,7 @@
     </view>
     <!--内容-->
     <view class="content">
-      <navigator url="/pages/preview/preview" class="item" v-for="item in classList" :key="item._id">
+      <navigator v-for="item in classList" :key="item._id" :url="`/pages/preview/preview?id=${item._id}`" class="item">
         <image :src="item.smallPicurl" mode="aspectFill"></image>
       </navigator>
     </view>

@@ -3,7 +3,7 @@
     <view class="go-back" :style="{ top: getStatusBarHeight() + 'px' }" @click="goBack">
       <uni-icons type="back" color="#fff" size="20"></uni-icons>
     </view>
-    <view class="count">3&nbsp;/&nbsp;9</view>
+    <view class="count">{{ currentIndex + 1 }}&nbsp;/&nbsp;{{ classList.length }}</view>
     <view class="time">
       <uni-dateformat :date="new Date()" format="hh:mm"></uni-dateformat>
     </view>
@@ -17,6 +17,21 @@
 <script setup>
 import WallpaperInfo from './wallpaper-info.vue'
 import { getStatusBarHeight } from '/utils/system'
+
+const props = defineProps({
+  // 分类图片列表
+  classList: {
+    type: Array,
+    default() {
+      return []
+    }
+  },
+  // 当前图片索引
+  currentIndex:{
+    type: Number,
+    default: 0
+  }
+})
 
 const goBack = () => {
   uni.navigateBack()

@@ -14,6 +14,20 @@ if (!Math) {
 const WallpaperInfo = () => "./wallpaper-info.js";
 const _sfc_main = {
   __name: "image-mask",
+  props: {
+    // 分类图片列表
+    classList: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    // 当前图片索引
+    currentIndex: {
+      type: Number,
+      default: 0
+    }
+  },
   setup(__props) {
     const goBack = () => {
       common_vendor.index.navigateBack();
@@ -27,11 +41,13 @@ const _sfc_main = {
         }),
         b: common_vendor.unref(utils_system.getStatusBarHeight)() + "px",
         c: common_vendor.o(goBack),
-        d: common_vendor.p({
+        d: common_vendor.t(__props.currentIndex + 1),
+        e: common_vendor.t(__props.classList.length),
+        f: common_vendor.p({
           date: /* @__PURE__ */ new Date(),
           format: "hh:mm"
         }),
-        e: common_vendor.p({
+        g: common_vendor.p({
           date: /* @__PURE__ */ new Date(),
           format: "MM月dd日"
         })
