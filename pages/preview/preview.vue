@@ -45,13 +45,11 @@ classList.value = storageClassList.map((item) => {
     picUrl: item.smallPicurl.replace('_small.webp', '.jpg')
   }
 })
-console.log(classList.value)
 
 // 滑动切换图片
 const swiperChange = (e) => {
   currentIndex.value = e.detail.current
   currentInfo.value = classList.value[currentIndex.value]
-  console.log(currentInfo.value)
   readImgsFn()
 }
 

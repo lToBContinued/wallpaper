@@ -6,7 +6,7 @@
     </view>
     <view class="box" @click="giveScore">
       <uni-icons type="star" size="24"></uni-icons>
-      <view class="text">5分</view>
+      <view class="text">{{ currentInfo.score }}分</view>
     </view>
     <view class="box">
       <uni-icons type="download" size="24"></uni-icons>
@@ -48,12 +48,14 @@
           </view>
           <view class="row">
             <view class="label">摘要：</view>
-            <text selectable="true" class="value"> {{ currentInfo.description }} </text>
+            <text selectable="true" class="value"> {{ currentInfo.description }}</text>
           </view>
           <view class="row">
             <view class="label">标签：</view>
             <view class="value tabs">
-              <text selectable="true" class="tab" v-for="item in currentInfo.tabs" :key="item">{{ item }}</text>
+              <text selectable="true" class="tab" v-for="item in currentInfo.tabs" :key="item">
+                {{ item }}
+              </text>
             </view>
           </view>
         </view>
@@ -66,17 +68,24 @@
     <view class="score-popup">
       <view class="pop-header">
         <view></view>
-        <view class="title">壁纸评分</view>
+        <view class="title">{{ isScore ? '评分过了~' : '壁纸评分' }}</view>
         <view class="close">
           <uni-icons type="closeempty" size="18" color="#999" @click="closeScorePopup"></uni-icons>
         </view>
       </view>
       <view class="content">
-        <uni-rate touchable v-model="userScore" size="20" allowHalf></uni-rate>
+        <uni-rate
+          touchable
+          v-model="userScore"
+          size="20"
+          allowHalf
+          :disabled="isScore"
+          disabled-color="#ffca3e"
+        ></uni-rate>
         <text class="text">{{ userScore }}分</text>
       </view>
       <view class="footer">
-        <button type="default" size="mini" plain="true" :disabled="!userScore" @click="submitScore">确认评分</button>
+        <button type="default" size="mini" plain="true" :disabled="isScore" @click="submitScore">确认评分</button>
       </view>
     </view>
   </uni-popup>
@@ -84,8 +93,21 @@
 
 <script setup>
 import { ref } from 'vue'
+import { getSetupScoreService } from '/api/preview'
 
 const props = defineProps({
+  // 分类图片列表
+  classList: {
+    type: Array,
+    default() {
+      return []
+    }
+  },
+  // 当前图片索引
+  currentIndex: {
+    type: Number,
+    default: 0
+  },
   // 当前图片信息
   currentInfo: {
     type: Object,
@@ -103,6 +125,7 @@ const props = defineProps({
 const infoPopup = ref(null)
 const scorePopup = ref(null)
 const userScore = ref(0)
+const isScore = ref(false) // 用户是否有评分
 
 // 打开信息弹出层
 const checkDetail = () => {
@@ -112,16 +135,46 @@ const checkDetail = () => {
 const closeInfoPopup = () => {
   infoPopup.value.close()
 }
+
 // 打开评分弹出层
 const giveScore = () => {
+  if (props.currentInfo.userScore) {
+    isScore.value = true
+    userScore.value = props.currentInfo.userScore
+  }
   scorePopup.value.open()
 }
 // 关闭评分弹出层
 const closeScorePopup = () => {
   scorePopup.value.close()
+  userScore.value = 0
+  isScore.value = false
 }
 // 确认评分
-const submitScore = () => {}
+const submitScore = async () => {
+  uni.showLoading({
+    title: '评分中~'
+  })
+  let { classid, _id: wallId } = props.currentInfo
+  const params = {
+    classid,
+    wallId,
+    userScore: userScore.value
+  }
+  // 评分
+  const res = await getSetupScoreService(params)
+  uni.hideLoading()
+  if (res.errCode === 0) {
+    uni.showToast({
+      title: '评分成功',
+      icon: 'none'
+    })
+    // 将评分后的结果保存
+    props.classList[props.currentIndex]['userScore'] = userScore.value
+    uni.setStorageSync('storageClassList', props.classList)
+    closeScorePopup()
+  }
+}
 </script>
 
 <style scoped lang="scss">

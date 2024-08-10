@@ -10,7 +10,12 @@
     <view class="date">
       <uni-dateformat :date="new Date()" format="MM月dd日"></uni-dateformat>
     </view>
-    <wallpaper-info :currentInfo="currentInfo" :wallPaperClass="wallPaperClass"></wallpaper-info>
+    <wallpaper-info
+      :currentInfo="currentInfo"
+      :wallPaperClass="wallPaperClass"
+      :classList="classList"
+      :currentIndex="currentIndex"
+    ></wallpaper-info>
   </view>
 </template>
 
@@ -27,19 +32,19 @@ const props = defineProps({
     }
   },
   // 当前图片索引
-  currentIndex:{
+  currentIndex: {
     type: Number,
     default: 0
   },
   // 当前图片信息
-  currentInfo:{
+  currentInfo: {
     type: Object,
     default() {
       return {}
     }
   },
   // 当前壁纸分类
-  wallPaperClass:{
+  wallPaperClass: {
     type: String,
     default: ''
   }

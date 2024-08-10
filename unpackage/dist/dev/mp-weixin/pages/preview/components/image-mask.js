@@ -65,7 +65,9 @@ const _sfc_main = {
         }),
         h: common_vendor.p({
           currentInfo: __props.currentInfo,
-          wallPaperClass: __props.wallPaperClass
+          wallPaperClass: __props.wallPaperClass,
+          classList: __props.classList,
+          currentIndex: __props.currentIndex
         })
       };
     };

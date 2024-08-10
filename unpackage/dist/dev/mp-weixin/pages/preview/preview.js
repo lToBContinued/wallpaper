@@ -28,11 +28,9 @@ const _sfc_main = {
         picUrl: item.smallPicurl.replace("_small.webp", ".jpg")
       };
     });
-    console.log(classList.value);
     const swiperChange = (e) => {
       currentIndex.value = e.detail.current;
       currentInfo.value = classList.value[currentIndex.value];
-      console.log(currentInfo.value);
       readImgsFn();
     };
     const maskChange = () => {
