@@ -9,3 +9,11 @@ swiper-item {
   background: linear-gradient(to bottom, transparent, #fff 400rpx),
   linear-gradient(to right, #beecd8 20%, #f4e2d8);
 }
+
+.loading-layout{
+  padding: 30rpx 0;
+}
+
+.safe-area-inset-bottom {
+  height: env(safe-area-inset-bottom);
+}

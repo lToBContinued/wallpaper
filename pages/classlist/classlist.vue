@@ -1,24 +1,41 @@
 <template>
   <view class="classList">
+    <!--加载中-->
+    <view class="loading-layout" v-if="!classList.length && !noData">
+      <uni-load-more status="loading"></uni-load-more>
+    </view>
+    <!--内容-->
     <view class="content">
       <navigator url="/pages/preview/preview" class="item" v-for="item in classList" :key="item._id">
         <image :src="item.smallPicurl" mode="aspectFill"></image>
       </navigator>
     </view>
+    <!--触底-->
+    <view class="loading-layout" v-if="classList.length || noData">
+      <uni-load-more :status="noData ? 'noMore' : 'loading'"></uni-load-more>
+    </view>
+    <!--设备底部虚拟控件占位-->
+    <view class="safe-area-inset-bottom"></view>
   </view>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
+import { onLoad, onReachBottom } from '@dcloudio/uni-app'
 import { getClassListService } from '/api/classlist'
 
 const classList = ref([]) // 分类中壁纸列表
-const params = {} // 请求参数
+// 请求参数
+const params = {
+  pageNum: 1,
+  pageSize: 12
+}
+const noData = ref(false) // 判断是否还有数据
 
+// 页面加载时修改导航栏标题并获取分类中壁纸列表
 onLoad((e) => {
   let { classid = null, name = null } = e
-  params.classid = classid
+  params['classid'] = classid
   // 修改导航栏标题
   uni.setNavigationBarTitle({
     title: name
@@ -26,10 +43,20 @@ onLoad((e) => {
   getClassList()
 })
 
+onReachBottom(() => {
+  if (noData.value) return
+  params['pageNum']++
+  getClassList()
+})
+
 // 获取分类中壁纸列表
 const getClassList = async () => {
   const res = await getClassListService(params)
-  classList.value = res.data
+  if (res.data.length < params.pageSize) {
+    noData.value = true
+  }
+  classList.value = [...classList.value, ...res.data]
+  uni.setStorageSync('storageClassList', classList.value) // 缓存获取到的数据
 }
 </script>
 
