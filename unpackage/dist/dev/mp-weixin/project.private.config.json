@@ -4,18 +4,5 @@
   "setting": {
     "compileHotReLoad": true,
     "urlCheck": false
-  },
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/classlist/classlist",
-          "pathName": "pages/classlist/classlist",
-          "query": "classid=6524a48f6523417a8a8b825d&name=%E5%8F%AF%E7%88%B1%E8%90%8C%E5%AE%A0",
-          "launchMode": "default",
-          "scene": null
-        }
-      ]
-    }
   }
 }

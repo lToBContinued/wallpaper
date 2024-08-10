@@ -12,6 +12,7 @@ if (!Math) {
 const _sfc_main = {
   __name: "classlist",
   setup(__props) {
+    const currentPageName = common_vendor.ref("");
     const classList = common_vendor.ref([]);
     const params = {
       pageNum: 1,
@@ -21,6 +22,7 @@ const _sfc_main = {
     common_vendor.onLoad((e) => {
       let { classid = null, name = null } = e;
       params["classid"] = classid;
+      currentPageName.value = name;
       common_vendor.index.setNavigationBarTitle({
         title: name
       });
@@ -52,7 +54,7 @@ const _sfc_main = {
           return {
             a: item.smallPicurl,
             b: item._id,
-            c: `/pages/preview/preview?id=${item._id}`
+            c: `/pages/preview/preview?id=${item._id}&name=${currentPageName.value}`
           };
         }),
         d: classList.value.length || noData.value

@@ -29,31 +29,31 @@
         <view class="content">
           <view class="row">
             <view class="label">壁纸ID：</view>
-            <text selectable="true" class="value">123123123123abcdefg</text>
+            <text selectable="true" class="value">{{ currentInfo._id }}</text>
           </view>
           <view class="row">
             <view class="label">分类：</view>
-            <text selectable="true" class="value category">明星美女</text>
+            <text selectable="true" class="value category">{{ wallPaperClass }}</text>
           </view>
           <view class="row">
             <view class="label">发布者：</view>
-            <text selectable="true" class="value">咸虾米</text>
+            <text selectable="true" class="value">{{ currentInfo.nickname }}</text>
           </view>
           <view class="row">
             <view class="label">评分：</view>
             <view class="value rate-box">
-              <uni-rate readonly touchable value="3" size="16"></uni-rate>
-              <text class="score">5分</text>
+              <uni-rate readonly touchable :value="currentInfo.score" size="16"></uni-rate>
+              <text class="score">{{ currentInfo.score }}分</text>
             </view>
           </view>
           <view class="row">
             <view class="label">摘要：</view>
-            <text selectable="true" class="value"> 摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要 </text>
+            <text selectable="true" class="value"> {{ currentInfo.description }} </text>
           </view>
           <view class="row">
             <view class="label">标签：</view>
             <view class="value tabs">
-              <text selectable="true" class="tab" v-for="item in 3" :key="item">标签名</text>
+              <text selectable="true" class="tab" v-for="item in currentInfo.tabs" :key="item">{{ item }}</text>
             </view>
           </view>
         </view>
@@ -84,6 +84,21 @@
 
 <script setup>
 import { ref } from 'vue'
+
+const props = defineProps({
+  // 当前图片信息
+  currentInfo: {
+    type: Object,
+    default() {
+      return {}
+    }
+  },
+  // 当前壁纸分类
+  wallPaperClass: {
+    type: String,
+    default: ''
+  }
+})
 
 const infoPopup = ref(null)
 const scorePopup = ref(null)
@@ -194,15 +209,16 @@ const submitScore = () => {}
         .tabs {
           display: flex;
           flex-wrap: nowrap;
+          height: 50rpx;
 
           .tab {
             margin: 0 10rpx 0 10rpx;
             border: 1px solid $brand-theme-color;
             color: $brand-theme-color;
             font-size: 22rpx;
-            padding: 10rpx 30rpx;
+            padding: 0 30rpx;
             border-radius: 40rpx;
-            line-height: 1em;
+            line-height: 50rpx;
           }
         }
 

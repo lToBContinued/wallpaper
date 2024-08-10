@@ -10,7 +10,7 @@
     <view class="date">
       <uni-dateformat :date="new Date()" format="MM月dd日"></uni-dateformat>
     </view>
-    <wallpaper-info></wallpaper-info>
+    <wallpaper-info :currentInfo="currentInfo" :wallPaperClass="wallPaperClass"></wallpaper-info>
   </view>
 </template>
 
@@ -30,9 +30,22 @@ const props = defineProps({
   currentIndex:{
     type: Number,
     default: 0
+  },
+  // 当前图片信息
+  currentInfo:{
+    type: Object,
+    default() {
+      return {}
+    }
+  },
+  // 当前壁纸分类
+  wallPaperClass:{
+    type: String,
+    default: ''
   }
 })
 
+// 返回上一页
 const goBack = () => {
   uni.navigateBack()
 }

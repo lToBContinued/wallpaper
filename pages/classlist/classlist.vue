@@ -6,7 +6,12 @@
     </view>
     <!--内容-->
     <view class="content">
-      <navigator v-for="item in classList" :key="item._id" :url="`/pages/preview/preview?id=${item._id}`" class="item">
+      <navigator
+        v-for="item in classList"
+        :key="item._id"
+        :url="`/pages/preview/preview?id=${item._id}&name=${currentPageName}`"
+        class="item"
+      >
         <image :src="item.smallPicurl" mode="aspectFill"></image>
       </navigator>
     </view>
@@ -24,6 +29,7 @@ import { ref } from 'vue'
 import { onLoad, onReachBottom } from '@dcloudio/uni-app'
 import { getClassListService } from '/api/classlist'
 
+const currentPageName = ref('')
 const classList = ref([]) // 分类中壁纸列表
 // 请求参数
 const params = {
@@ -36,6 +42,7 @@ const noData = ref(false) // 判断是否还有数据
 onLoad((e) => {
   let { classid = null, name = null } = e
   params['classid'] = classid
+  currentPageName.value = name
   // 修改导航栏标题
   uni.setNavigationBarTitle({
     title: name

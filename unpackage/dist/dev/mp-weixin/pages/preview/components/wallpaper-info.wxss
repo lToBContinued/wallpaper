@@ -86,15 +86,16 @@
 .info-popup scroll-view .content .row .tabs.data-v-5acf9712 {
   display: flex;
   flex-wrap: nowrap;
+  height: 50rpx;
 }
 .info-popup scroll-view .content .row .tabs .tab.data-v-5acf9712 {
   margin: 0 10rpx 0 10rpx;
   border: 1px solid #28b389;
   color: #28b389;
   font-size: 22rpx;
-  padding: 10rpx 30rpx;
+  padding: 0 30rpx;
   border-radius: 40rpx;
-  line-height: 1em;
+  line-height: 50rpx;
 }
 .info-popup scroll-view .content .row .category.data-v-5acf9712 {
   color: #28b389;

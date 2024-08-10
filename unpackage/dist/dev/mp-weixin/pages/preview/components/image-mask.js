@@ -26,6 +26,18 @@ const _sfc_main = {
     currentIndex: {
       type: Number,
       default: 0
+    },
+    // 当前图片信息
+    currentInfo: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
+    // 当前壁纸分类
+    wallPaperClass: {
+      type: String,
+      default: ""
     }
   },
   setup(__props) {
@@ -50,6 +62,10 @@ const _sfc_main = {
         g: common_vendor.p({
           date: /* @__PURE__ */ new Date(),
           format: "MM月dd日"
+        }),
+        h: common_vendor.p({
+          currentInfo: __props.currentInfo,
+          wallPaperClass: __props.wallPaperClass
         })
       };
     };
