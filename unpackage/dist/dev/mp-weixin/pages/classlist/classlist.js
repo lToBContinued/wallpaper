@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const api_classlist = require("../../api/classlist.js");
+const utils_common = require("../../utils/common.js");
 if (!Array) {
   const _easycom_uni_load_more2 = common_vendor.resolveComponent("uni-load-more");
   _easycom_uni_load_more2();
@@ -22,6 +23,8 @@ const _sfc_main = {
     let pageName = common_vendor.ref("");
     common_vendor.onLoad((e) => {
       let { classid = null, name = null } = e;
+      if (!classid)
+        utils_common.gotoHome();
       params["classid"] = classid;
       currentPageName.value = name;
       pageName.value = name;

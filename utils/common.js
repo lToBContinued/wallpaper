@@ -23,3 +23,19 @@ export function compareTimestamp(timestamp) {
     return '3个月'
   }
 }
+
+// 页面错误跳转到首页
+export const gotoHome = () => {
+  uni.showModal({
+    title: '提示',
+    content: '页面错误，将返回首页',
+    showCancel: false,
+    success: (res) => {
+      if (res.confirm) {
+        uni.reLaunch({
+          url: '/pages/index/index'
+        })
+      }
+    }
+  })
+}

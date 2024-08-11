@@ -28,6 +28,7 @@
 import { ref } from 'vue'
 import { onLoad, onUnload, onReachBottom, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import { getClassListService } from '/api/classlist'
+import { gotoHome } from '/utils/common'
 
 const currentPageName = ref('')
 const classList = ref([]) // 分类中壁纸列表
@@ -41,7 +42,8 @@ let pageName = ref('') // 页面名称
 
 // 页面加载时修改导航栏标题并获取分类中壁纸列表
 onLoad((e) => {
-  let { classid = null, name = null } = e
+  let { classid = null, name = null } = e // 获取分类页面id和分类名称
+  if (!classid) gotoHome() // 页面加载失败返回首页
   params['classid'] = classid
   currentPageName.value = name
   pageName.value = name

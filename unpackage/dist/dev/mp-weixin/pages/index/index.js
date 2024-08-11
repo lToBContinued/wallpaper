@@ -32,9 +32,10 @@ const _sfc_main = {
         title: "咸虾米壁纸，好看的手机壁纸"
       };
     });
-    const goPreview = () => {
+    const goPreview = (id) => {
+      common_vendor.index.setStorageSync("storageClassList", dayRandomWallpaperList.value);
       common_vendor.index.navigateTo({
-        url: "/pages/preview/preview"
+        url: `/pages/preview/preview?id=${id}`
       });
     };
     const getDayRandomWallpaperList = async () => {
@@ -67,7 +68,7 @@ const _sfc_main = {
           return {
             a: item.smallPicurl,
             b: item._id,
-            c: common_vendor.o(goPreview, item._id)
+            c: common_vendor.o(($event) => goPreview(item._id), item._id)
           };
         }),
         e: common_vendor.f(recommendList.value, (item, k0, i0) => {

@@ -58,6 +58,7 @@
               </text>
             </view>
           </view>
+          <view class="safe-area-inset-bottom"></view>
         </view>
       </scroll-view>
     </view>
