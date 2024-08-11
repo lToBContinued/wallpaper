@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "navigationStyle": "custom",
   "usingComponents": {
-    "info-list": "./components/info-list"
+    "info-list": "./components/info-list",
+    "loading": "../../components/global/loading"
   }
 }

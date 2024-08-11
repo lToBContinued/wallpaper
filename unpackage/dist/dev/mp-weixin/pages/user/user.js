@@ -2,46 +2,58 @@
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
 const utils_system = require("../../utils/system.js");
+const api_user = require("../../api/user.js");
 if (!Array) {
   const _component_template = common_vendor.resolveComponent("template");
   _component_template();
 }
 if (!Math) {
-  InfoList();
+  (InfoList + Loading)();
 }
 const InfoList = () => "./components/info-list.js";
+const Loading = () => "../../components/global/loading.js";
 const _sfc_main = {
   __name: "user",
   setup(__props) {
+    const userInfo = common_vendor.ref(null);
+    const getUserInfo = async () => {
+      const res = await api_user.getUserInfoService();
+      userInfo.value = res.data;
+    };
+    getUserInfo();
     return (_ctx, _cache) => {
-      return {
-        a: common_vendor.unref(utils_system.getStatusBarHeight)() + "px",
-        b: common_assets._imports_0,
-        c: common_vendor.p({
+      return common_vendor.e({
+        a: userInfo.value
+      }, userInfo.value ? {
+        b: common_vendor.unref(utils_system.getStatusBarHeight)() + "px",
+        c: common_assets._imports_0,
+        d: common_vendor.t(userInfo.value.IP),
+        e: common_vendor.t(userInfo.value.address.city || userInfo.value.address.province || userInfo.value.address.country),
+        f: common_vendor.p({
           title: "我的下载",
           iconType: "download-filled",
-          num: "33"
+          num: userInfo.value.downloadSize
         }),
-        d: common_vendor.p({
+        g: common_vendor.p({
           title: "我的评分",
           iconType: "star-filled",
-          num: "33"
+          num: userInfo.value.scoreSize
         }),
-        e: common_vendor.p({
+        h: common_vendor.p({
           title: "联系客服",
           iconType: "chatboxes-filled",
           bottomLine: false
         }),
-        f: common_vendor.p({
+        i: common_vendor.p({
           title: "订阅更新",
           iconType: "notification-filled"
         }),
-        g: common_vendor.p({
+        j: common_vendor.p({
           title: "常见问题",
           iconType: "flag-filled",
           bottomLine: false
         })
-      };
+      } : {});
     };
   }
 };

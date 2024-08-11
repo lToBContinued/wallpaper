@@ -51,3 +51,14 @@
   height: 100rpx;
   opacity: 0;
 }
+.loadingLayout.data-v-0f7520f0 {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.loadingLayout .loading.data-v-0f7520f0 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

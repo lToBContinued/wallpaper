@@ -1,20 +1,22 @@
 <template>
-  <view class="userLayout pageBg">
+  <view class="userLayout pageBg" v-if="userInfo">
     <view class="status-bar" :style="{ height: getStatusBarHeight() + 'px' }"></view>
     <view class="userInfo">
       <view class="avatar">
         <image src="/static/images/avatar.png" mode="aspectFill"></image>
       </view>
-      <view class="ip">100.100.100.100</view>
-      <view class="address">来自于：山东</view>
+      <view class="ip">{{ userInfo.IP }}</view>
+      <view class="address">
+        来自于：{{ userInfo.address.city || userInfo.address.province || userInfo.address.country }}
+      </view>
     </view>
 
     <view class="section">
       <navigator url="/pages/classlist/classlist">
-        <info-list title="我的下载" iconType="download-filled" num="33"></info-list>
+        <info-list title="我的下载" iconType="download-filled" :num="userInfo.downloadSize"></info-list>
       </navigator>
       <navigator url="/pages/classlist/classlist">
-        <info-list title="我的评分" iconType="star-filled" num="33"></info-list>
+        <info-list title="我的评分" iconType="star-filled" :num="userInfo.scoreSize"></info-list>
       </navigator>
       <info-list title="联系客服" iconType="chatboxes-filled" :bottomLine="false">
         <template>
@@ -35,11 +37,21 @@
       <info-list title="常见问题" iconType="flag-filled" :bottomLine="false"></info-list>
     </view>
   </view>
+  <view class="loadingLayout" v-else>
+    <view class="loading">
+      <loading></loading>
+    </view>
+  </view>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import InfoList from './components/info-list.vue'
 import { getStatusBarHeight } from '/utils/system'
+import { getUserInfoService } from '/api/user'
+import Loading from '../../components/global/loading.vue'
+
+const userInfo = ref(null) // 用户信息
 
 // 拨打电话
 const clickContact = () => {
@@ -47,6 +59,13 @@ const clickContact = () => {
     phoneNumber: '12345678901'
   })
 }
+
+// 获取用户信息
+const getUserInfo = async () => {
+  const res = await getUserInfoService()
+  userInfo.value = res.data
+}
+getUserInfo()
 </script>
 
 <style scoped lang="scss">
@@ -95,6 +114,19 @@ const clickContact = () => {
     width: 100%;
     height: 100rpx;
     opacity: 0;
+  }
+}
+
+.loadingLayout {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  .loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 </style>

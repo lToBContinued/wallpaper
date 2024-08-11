@@ -1,0 +1,33 @@
+
+.loadBox.data-v-a059e9fb {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loader.data-v-a059e9fb {
+  margin-bottom: 30rpx;
+  width: 60rpx;
+  aspect-ratio: 0.577;
+  -webkit-clip-path: polygon(0 0, 100% 100%, 0 100%, 100% 0);
+          clip-path: polygon(0 0, 100% 100%, 0 100%, 100% 0);
+  position: relative;
+  animation: l19-a059e9fb 2s infinite linear;
+  overflow: hidden;
+}
+.loader.data-v-a059e9fb:before {
+  content: '';
+  position: absolute;
+  inset: -150% -150%;
+  background: repeating-conic-gradient(from 30deg, #ffabab 0 60deg, #abe4ff 0 120deg, #28b389 0 180deg);
+  animation: inherit;
+  animation-direction: reverse;
+}
+.text.data-v-a059e9fb {
+  color: #676767;
+}
+@keyframes l19-a059e9fb {
+100% {
+    transform: rotate(360deg);
+}
+}
