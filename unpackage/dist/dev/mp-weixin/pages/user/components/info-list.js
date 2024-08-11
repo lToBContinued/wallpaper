@@ -26,6 +26,10 @@ const _sfc_main = {
     bottomLine: {
       type: Boolean,
       default: true
+    },
+    pageUrl: {
+      type: String,
+      default: ""
     }
   },
   setup(__props) {
@@ -42,7 +46,8 @@ const _sfc_main = {
           type: "right",
           size: "15"
         }),
-        e: __props.bottomLine ? "1px solid #eee" : "none"
+        e: __props.pageUrl,
+        f: __props.bottomLine ? "1px solid #eee" : "none"
       };
     };
   }

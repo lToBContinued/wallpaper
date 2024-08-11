@@ -33,8 +33,17 @@
     </view>
 
     <view class="section">
-      <info-list title="订阅更新" iconType="notification-filled"></info-list>
-      <info-list title="常见问题" iconType="flag-filled" :bottomLine="false"></info-list>
+      <info-list
+        title="订阅更新"
+        iconType="notification-filled"
+        pageUrl="/pages/notice/notice?id=65361e318b0da4ca084e3ce0&name=订阅更新"
+      ></info-list>
+      <info-list
+        title="常见问题"
+        iconType="flag-filled"
+        :bottomLine="false"
+        pageUrl="/pages/notice/notice?id=6536358ce0ec19c8d67fbe82&name=常见问题"
+      ></info-list>
     </view>
   </view>
   <view class="loadingLayout" v-else>

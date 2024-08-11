@@ -46,12 +46,14 @@ const _sfc_main = {
         }),
         i: common_vendor.p({
           title: "订阅更新",
-          iconType: "notification-filled"
+          iconType: "notification-filled",
+          pageUrl: "/pages/notice/notice?id=65361e318b0da4ca084e3ce0&name=订阅更新"
         }),
         j: common_vendor.p({
           title: "常见问题",
           iconType: "flag-filled",
-          bottomLine: false
+          bottomLine: false,
+          pageUrl: "/pages/notice/notice?id=6536358ce0ec19c8d67fbe82&name=常见问题"
         })
       } : {});
     };

@@ -40,7 +40,6 @@ const _sfc_main = {
     });
     const storageClassList = common_vendor.index.getStorageSync("storageClassList") || [];
     smallPicToBigPic(storageClassList);
-    console.log(classList.value);
     const swiperChange = (e) => {
       currentIndex.value = e.detail.current;
       currentInfo.value = classList.value[currentIndex.value];

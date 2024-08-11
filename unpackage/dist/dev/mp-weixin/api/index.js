@@ -22,7 +22,14 @@ const getRecommendListService = (data = {}) => {
     data
   });
 };
+const getNoticeDetailService = (data = {}) => {
+  return utils_request.request({
+    url: "/wallNewsDetail",
+    data
+  });
+};
 exports.getBannerListService = getBannerListService;
 exports.getDayRandomWallpaperListService = getDayRandomWallpaperListService;
 exports.getNewsListService = getNewsListService;
+exports.getNoticeDetailService = getNoticeDetailService;
 exports.getRecommendListService = getRecommendListService;

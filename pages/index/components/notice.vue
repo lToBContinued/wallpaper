@@ -8,7 +8,7 @@
     <view class="center">
       <swiper vertical="true" autoplay="true" interval="1500" duration="300" circular="true">
         <swiper-item v-for="item in newsList" :key="item._id">
-          <navigator url="/pages/notice/detail">{{ item.title }}</navigator>
+          <navigator :url="`/pages/notice/notice?id=${item._id}`">{{ item.title }}</navigator>
         </swiper-item>
       </swiper>
     </view>
