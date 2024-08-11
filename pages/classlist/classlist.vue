@@ -2,7 +2,7 @@
   <view class="classList">
     <!--加载中-->
     <view class="loading-layout" v-if="!classList.length && !noData">
-      <uni-load-more status="loading"></uni-load-more>
+      <loading></loading>
     </view>
     <!--内容-->
     <view class="content">
@@ -29,6 +29,7 @@ import { ref } from 'vue'
 import { onLoad, onUnload, onReachBottom, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import { getClassListService } from '/api/classlist'
 import { getUserHistoryWallListService } from '../../api/user'
+import Loading from '../../components/global/loading.vue'
 
 const currentPageName = ref('')
 const classList = ref([]) // 分类中壁纸列表
