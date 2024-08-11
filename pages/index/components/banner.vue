@@ -10,7 +10,7 @@
       circular="true"
     >
       <swiper-item v-for="item in bannerList" :key="item._id">
-        <image :src="item.picurl" mode="aspectFill"></image>
+        <image :src="item.picurl" mode="aspectFill" @click="gotoLink(item)"></image>
       </swiper-item>
     </swiper>
   </view>
@@ -28,6 +28,22 @@ const getBannerList = async () => {
   bannerList.value = res.data
 }
 getBannerList()
+
+// 轮播图点击跳转
+const gotoLink = (data) => {
+  // 跳转到其他小程序
+  if (data.target === 'miniProgram') {
+    uni.navigateToMiniProgram({
+      appId: data.appid
+    })
+  }
+  // 小程序内跳转
+  if (data.target === 'self') {
+    uni.navigateTo({
+      url: `/pages/classlist/classlist?${data.url}`
+    })
+  }
+}
 </script>
 
 <style scoped lang="scss">

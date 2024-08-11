@@ -1,6 +1,6 @@
 <template>
   <view class="theme-item">
-    <navigator v-if="!isMore" :url="`/pages/classlist/classlist?classid=${item._id}&name=${item.name}`" class="box">
+    <navigator v-if="!isMore" :url="`/pages/classlist/classlist?id=${item._id}&name=${item.name}`" class="box">
       <image class="pic" :src="item.picurl" mode="aspectFill"></image>
       <view class="mask">{{ item.name }}</view>
       <view class="tab">{{ compareTimestamp(item.updateTime) }}前更新</view>

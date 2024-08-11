@@ -22,12 +22,12 @@ const _sfc_main = {
     const noData = common_vendor.ref(false);
     let pageName = common_vendor.ref("");
     common_vendor.onLoad((e) => {
-      let { classid = null, name = null, type = null } = e;
+      let { id = null, name = null, type = null } = e;
       if (type) {
         params["type"] = type;
       }
-      if (classid) {
-        params["classid"] = classid;
+      if (id) {
+        params["classid"] = id;
       }
       currentPageName.value = name;
       pageName.value = name;
@@ -48,13 +48,13 @@ const _sfc_main = {
     common_vendor.onShareAppMessage(() => {
       return {
         title: `咸虾米壁纸-${pageName.value}`,
-        path: `/pages/classlist/classlist?classid=${params.classid}&name=${pageName.value}`
+        path: `/pages/classlist/classlist?id=${params.classid}&name=${pageName.value}`
       };
     });
     common_vendor.onShareTimeline(() => {
       return {
         title: `咸虾米壁纸-${pageName.value}`,
-        query: `classid=${params.classid}&name=${pageName.value}`
+        query: `id=${params.classid}&name=${pageName.value}`
       };
     });
     const getClassList = async () => {

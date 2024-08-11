@@ -31,7 +31,7 @@
       <common-title>
         <template #name>专题精选</template>
         <template #custom>
-          <navigator url="" class="more">More+</navigator>
+          <navigator url="/pages/classify/classify" open-type="reLaunch" class="more">More+</navigator>
         </template>
       </common-title>
       <view class="content">

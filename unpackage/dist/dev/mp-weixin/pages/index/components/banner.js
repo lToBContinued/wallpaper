@@ -10,12 +10,25 @@ const _sfc_main = {
       bannerList.value = res.data;
     };
     getBannerList();
+    const gotoLink = (data) => {
+      if (data.target === "miniProgram") {
+        common_vendor.index.navigateToMiniProgram({
+          appId: data.appid
+        });
+      }
+      if (data.target === "self") {
+        common_vendor.index.navigateTo({
+          url: `/pages/classlist/classlist?${data.url}`
+        });
+      }
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.f(bannerList.value, (item, k0, i0) => {
           return {
             a: item.picurl,
-            b: item._id
+            b: common_vendor.o(($event) => gotoLink(item), item._id),
+            c: item._id
           };
         })
       };

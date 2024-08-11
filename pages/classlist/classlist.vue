@@ -28,7 +28,6 @@
 import { ref } from 'vue'
 import { onLoad, onUnload, onReachBottom, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import { getClassListService } from '/api/classlist'
-// import { gotoHome } from '/utils/common'
 import { getUserHistoryWallListService } from '../../api/user'
 
 const currentPageName = ref('')
@@ -43,12 +42,12 @@ let pageName = ref('') // 页面名称
 
 // 页面加载时修改导航栏标题并获取分类中壁纸列表
 onLoad((e) => {
-  let { classid = null, name = null, type = null } = e // 获取分类页面id和分类名称
+  let { id = null, name = null, type = null } = e // 获取分类页面id和分类名称
   if (type) {
     params['type'] = type
   }
-  if (classid) {
-    params['classid'] = classid
+  if (id) {
+    params['classid'] = id
   }
   currentPageName.value = name
   pageName.value = name
@@ -75,7 +74,7 @@ onReachBottom(() => {
 onShareAppMessage(() => {
   return {
     title: `咸虾米壁纸-${pageName.value}`,
-    path: `/pages/classlist/classlist?classid=${params.classid}&name=${pageName.value}`
+    path: `/pages/classlist/classlist?id=${params.classid}&name=${pageName.value}`
   }
 })
 
@@ -83,7 +82,7 @@ onShareAppMessage(() => {
 onShareTimeline(() => {
   return {
     title: `咸虾米壁纸-${pageName.value}`,
-    query: `classid=${params.classid}&name=${pageName.value}`
+    query: `id=${params.classid}&name=${pageName.value}`
   }
 })
 
