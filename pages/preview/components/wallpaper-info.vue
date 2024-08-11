@@ -6,7 +6,7 @@
     </view>
     <view class="box" @click="giveScore">
       <uni-icons type="star" size="24"></uni-icons>
-      <view class="text">{{ currentInfo.score }}分</view>
+      <view class="text">{{ Number(currentInfo.score) ? currentInfo.score + '分' : '暂无评分' }} </view>
     </view>
     <view class="box" @click="downloadPic">
       <uni-icons type="download" size="24"></uni-icons>
@@ -43,7 +43,7 @@
             <view class="label">评分：</view>
             <view class="value rate-box">
               <uni-rate readonly touchable :value="currentInfo.score" size="16"></uni-rate>
-              <text class="score">{{ currentInfo.score }}分</text>
+              <text class="score">{{ Number(currentInfo.score) ? currentInfo.score + '分' : '暂无评分' }} </text>
             </view>
           </view>
           <view class="row">

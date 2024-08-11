@@ -168,7 +168,7 @@ const _sfc_main = {
           type: "star",
           size: "24"
         }),
-        d: common_vendor.t(__props.currentInfo.score),
+        d: common_vendor.t(Number(__props.currentInfo.score) ? __props.currentInfo.score + "分" : "暂无评分"),
         e: common_vendor.o(giveScore),
         f: common_vendor.p({
           type: "download",
@@ -190,7 +190,7 @@ const _sfc_main = {
           value: __props.currentInfo.score,
           size: "16"
         }),
-        n: common_vendor.t(__props.currentInfo.score),
+        n: common_vendor.t(Number(__props.currentInfo.score) ? __props.currentInfo.score + "分" : "暂无评分"),
         o: common_vendor.t(__props.currentInfo.description),
         p: common_vendor.f(__props.currentInfo.tabs, (item, k0, i0) => {
           return {

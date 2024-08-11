@@ -19,15 +19,15 @@
 import { ref } from 'vue'
 import { onLoad, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import ImageMask from './components/image-mask.vue'
-import { getSingleWallpaperDetailService } from '../../api/preview'
+import { getSingleWallpaperDetailService } from '/api/preview'
 
 const maskState = ref(true) // 遮罩层显隐状态
 const classList = ref([]) // 分类列表
 const currentId = ref(null) // 当前图片的id
 const currentIndex = ref(0) // 当前图片的索引
 const readImgs = ref([]) // 看过的图片索引
-const currentInfo = ref(null)
-const wallPaperClass = ref('')
+const currentInfo = ref(null) // 当前图片信息
+const wallPaperClass = ref('') // 壁纸分类名称
 
 onLoad(async (e) => {
   currentId.value = e.id
