@@ -28,7 +28,8 @@
 import { ref } from 'vue'
 import { onLoad, onUnload, onReachBottom, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import { getClassListService } from '/api/classlist'
-import { gotoHome } from '/utils/common'
+// import { gotoHome } from '/utils/common'
+import { getUserHistoryWallListService } from '../../api/user'
 
 const currentPageName = ref('')
 const classList = ref([]) // 分类中壁纸列表
@@ -42,9 +43,13 @@ let pageName = ref('') // 页面名称
 
 // 页面加载时修改导航栏标题并获取分类中壁纸列表
 onLoad((e) => {
-  let { classid = null, name = null } = e // 获取分类页面id和分类名称
-  if (!classid) gotoHome() // 页面加载失败返回首页
-  params['classid'] = classid
+  let { classid = null, name = null, type = null } = e // 获取分类页面id和分类名称
+  if (type) {
+    params['type'] = type
+  }
+  if (classid) {
+    params['classid'] = classid
+  }
   currentPageName.value = name
   pageName.value = name
   // 修改导航栏标题
@@ -84,7 +89,15 @@ onShareTimeline(() => {
 
 // 获取分类中壁纸列表
 const getClassList = async () => {
-  const res = await getClassListService(params)
+  let res
+  // 通过id查询
+  if (params.classid) {
+    res = await getClassListService(params)
+  }
+  // 通过个人中心的查询历史数据
+  if (params.type) {
+    res = await getUserHistoryWallListService(params)
+  }
   if (res.data.length < params.pageSize) {
     noData.value = true
   }

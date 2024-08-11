@@ -1,5 +1,5 @@
 "use strict";
-const common_vendor = require("../common/vendor.js");
+require("../common/vendor.js");
 function compareTimestamp(timestamp) {
   const now = Date.now();
   const diff = now - timestamp;
@@ -21,19 +21,4 @@ function compareTimestamp(timestamp) {
     return "3个月";
   }
 }
-const gotoHome = () => {
-  common_vendor.index.showModal({
-    title: "提示",
-    content: "页面错误，将返回首页",
-    showCancel: false,
-    success: (res) => {
-      if (res.confirm) {
-        common_vendor.index.reLaunch({
-          url: "/pages/index/index"
-        });
-      }
-    }
-  });
-};
 exports.compareTimestamp = compareTimestamp;
-exports.gotoHome = gotoHome;

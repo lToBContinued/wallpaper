@@ -12,10 +12,10 @@
     </view>
 
     <view class="section">
-      <navigator url="/pages/classlist/classlist">
+      <navigator url="/pages/classlist/classlist?name=我的下载&type=download">
         <info-list title="我的下载" iconType="download-filled" :num="userInfo.downloadSize"></info-list>
       </navigator>
-      <navigator url="/pages/classlist/classlist">
+      <navigator url="/pages/classlist/classlist?name=我的评分&type=score">
         <info-list title="我的评分" iconType="star-filled" :num="userInfo.scoreSize"></info-list>
       </navigator>
       <info-list title="联系客服" iconType="chatboxes-filled" :bottomLine="false">

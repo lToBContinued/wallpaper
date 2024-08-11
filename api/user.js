@@ -6,3 +6,11 @@ export const getUserInfoService = () => {
     url: '/userInfo'
   })
 }
+
+// 获取我的评分/我的下载列表
+export const getUserHistoryWallListService = (data = {}) => {
+  return request({
+    url: '/userWallList',
+    data
+  })
+}

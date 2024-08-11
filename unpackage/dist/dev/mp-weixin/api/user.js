@@ -5,4 +5,11 @@ const getUserInfoService = () => {
     url: "/userInfo"
   });
 };
+const getUserHistoryWallListService = (data = {}) => {
+  return utils_request.request({
+    url: "/userWallList",
+    data
+  });
+};
+exports.getUserHistoryWallListService = getUserHistoryWallListService;
 exports.getUserInfoService = getUserInfoService;

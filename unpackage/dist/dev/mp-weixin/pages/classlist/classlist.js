@@ -1,7 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const api_classlist = require("../../api/classlist.js");
-const utils_common = require("../../utils/common.js");
+const api_user = require("../../api/user.js");
 if (!Array) {
   const _easycom_uni_load_more2 = common_vendor.resolveComponent("uni-load-more");
   _easycom_uni_load_more2();
@@ -22,10 +22,13 @@ const _sfc_main = {
     const noData = common_vendor.ref(false);
     let pageName = common_vendor.ref("");
     common_vendor.onLoad((e) => {
-      let { classid = null, name = null } = e;
-      if (!classid)
-        utils_common.gotoHome();
-      params["classid"] = classid;
+      let { classid = null, name = null, type = null } = e;
+      if (type) {
+        params["type"] = type;
+      }
+      if (classid) {
+        params["classid"] = classid;
+      }
       currentPageName.value = name;
       pageName.value = name;
       common_vendor.index.setNavigationBarTitle({
@@ -55,7 +58,13 @@ const _sfc_main = {
       };
     });
     const getClassList = async () => {
-      const res = await api_classlist.getClassListService(params);
+      let res;
+      if (params.classid) {
+        res = await api_classlist.getClassListService(params);
+      }
+      if (params.type) {
+        res = await api_user.getUserHistoryWallListService(params);
+      }
       if (res.data.length < params.pageSize) {
         noData.value = true;
       }
