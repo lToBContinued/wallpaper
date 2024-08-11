@@ -1,5 +1,5 @@
 <template>
-  <view class="preview">
+  <view class="preview" v-if="currentInfo">
     <swiper circular="true" :current="currentIndex" @change="swiperChange">
       <swiper-item v-for="(item, index) in classList" :key="item._id">
         <image v-if="readImgs.includes(index)" :src="item.picUrl" mode="aspectFill" @click="maskChange"></image>
@@ -17,8 +17,9 @@
 
 <script setup>
 import { ref } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
+import { onLoad, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import ImageMask from './components/image-mask.vue'
+import { getSingleWallpaperDetailService } from '../../api/preview'
 
 const maskState = ref(true) // 遮罩层显隐状态
 const classList = ref([]) // 分类列表
@@ -28,23 +29,38 @@ const readImgs = ref([]) // 看过的图片索引
 const currentInfo = ref(null)
 const wallPaperClass = ref('')
 
-onLoad((e) => {
+onLoad(async (e) => {
   currentId.value = e.id
+  // 如果是分享过来的页面，则根据id发送网络请求获取单张壁纸详情
+  if (e.type === 'share') {
+    const res = await getSingleWallpaperDetailService({ id: currentId.value })
+    smallPicToBigPic(res.data)
+  }
   currentIndex.value = classList.value.findIndex((item) => item._id === currentId.value)
   currentInfo.value = classList.value[currentIndex.value]
   wallPaperClass.value = e.name
   readImgsFn()
 })
 
-// 获取缓存的分类列表数据
-const storageClassList = uni.getStorageSync('storageClassList') || []
-// 将小图中的_small.webp换成大图的.jpg
-classList.value = storageClassList.map((item) => {
+// 分享给好友
+onShareAppMessage(() => {
   return {
-    ...item,
-    picUrl: item.smallPicurl.replace('_small.webp', '.jpg')
+    title: `咸虾米壁纸`,
+    path: `/pages/preview/preview?id=${currentId.value}&type=share`
   }
 })
+
+// 分享朋友圈
+onShareTimeline(() => {
+  return {
+    title: `咸虾米壁纸`,
+    query: `id=${currentId.value}&type=share`
+  }
+})
+
+// 获取缓存的分类列表数据
+const storageClassList = uni.getStorageSync('storageClassList') || []
+smallPicToBigPic(storageClassList)
 
 // 滑动切换图片
 const swiperChange = (e) => {
@@ -66,6 +82,16 @@ function readImgsFn() {
     currentIndex.value >= classList.value.length - 1 ? 0 : currentIndex.value + 1
   )
   readImgs.value = [...new Set(readImgs.value)] // 数组去重
+}
+
+// 将小图中的_small.webp换成大图的.jpg
+function smallPicToBigPic(arr){
+  classList.value = arr.map((item) => {
+    return {
+      ...item,
+      picUrl: item.smallPicurl.replace('_small.webp', '.jpg')
+    }
+  })
 }
 </script>
 

@@ -29,10 +29,6 @@
   padding-left: 10rpx;
   color: #666;
 }
-.row .left.data-v-af629a1c .uni-icons,
-.row .right.data-v-af629a1c .uni-icons {
-  color: #28b389 !important;
-}
 .row .right .text.data-v-af629a1c {
   font-size: 28rpx;
   color: #aaa;

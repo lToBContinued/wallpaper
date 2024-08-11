@@ -19,20 +19,37 @@ const _sfc_main = {
       pageSize: 12
     };
     const noData = common_vendor.ref(false);
+    let pageName = common_vendor.ref("");
     common_vendor.onLoad((e) => {
       let { classid = null, name = null } = e;
       params["classid"] = classid;
       currentPageName.value = name;
+      pageName.value = name;
       common_vendor.index.setNavigationBarTitle({
         title: name
       });
       getClassList();
+    });
+    common_vendor.onUnload(() => {
+      common_vendor.index.removeStorageSync("storageClassList");
     });
     common_vendor.onReachBottom(() => {
       if (noData.value)
         return;
       params["pageNum"]++;
       getClassList();
+    });
+    common_vendor.onShareAppMessage(() => {
+      return {
+        title: `咸虾米壁纸-${pageName.value}`,
+        path: `/pages/classlist/classlist?classid=${params.classid}&name=${pageName.value}`
+      };
+    });
+    common_vendor.onShareTimeline(() => {
+      return {
+        title: `咸虾米壁纸-${pageName.value}`,
+        query: `classid=${params.classid}&name=${pageName.value}`
+      };
     });
     const getClassList = async () => {
       const res = await api_classlist.getClassListService(params);
@@ -67,4 +84,5 @@ const _sfc_main = {
   }
 };
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-bd381383"]]);
+_sfc_main.__runtimeHooks = 6;
 wx.createPage(MiniProgramPage);

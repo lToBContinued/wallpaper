@@ -21,6 +21,17 @@ const _sfc_main = {
   setup(__props) {
     const dayRandomWallpaperList = common_vendor.ref([]);
     const recommendList = common_vendor.ref([]);
+    common_vendor.onShareAppMessage(() => {
+      return {
+        title: "咸虾米壁纸，好看的手机壁纸",
+        path: "/pages/index/index"
+      };
+    });
+    common_vendor.onShareTimeline(() => {
+      return {
+        title: "咸虾米壁纸，好看的手机壁纸"
+      };
+    });
     const goPreview = () => {
       common_vendor.index.navigateTo({
         url: "/pages/preview/preview"
@@ -76,4 +87,5 @@ const _sfc_main = {
   }
 };
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-1cf27b2a"]]);
+_sfc_main.__runtimeHooks = 6;
 wx.createPage(MiniProgramPage);

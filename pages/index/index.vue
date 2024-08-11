@@ -46,6 +46,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import CommonTitle from '/components/global/common-title.vue'
 import Banner from './components/banner.vue'
 import Notice from './components/notice.vue'
@@ -55,6 +56,21 @@ import { getRecommendListService, getDayRandomWallpaperListService } from '/api'
 
 const dayRandomWallpaperList = ref([]) // 每日推荐壁纸列表
 const recommendList = ref([]) // 专题精选列表
+
+// 分享给好友
+onShareAppMessage(() => {
+  return {
+    title: '咸虾米壁纸，好看的手机壁纸',
+    path: '/pages/index/index'
+  }
+})
+
+// 分享朋友圈
+onShareTimeline(() => {
+  return {
+    title: '咸虾米壁纸，好看的手机壁纸'
+  }
+})
 
 // 跳转到预览页面
 const goPreview = () => {

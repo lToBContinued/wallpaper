@@ -1,7 +1,7 @@
 <template>
   <view class="row" :style="{ borderBottom: bottomLine ? '1px solid #eee' : 'none' }">
     <view class="left">
-      <uni-icons :type="iconType" size="20"></uni-icons>
+      <uni-icons :type="iconType" size="20" color="#28b389"></uni-icons>
       <view class="text">{{ title }}</view>
     </view>
 
@@ -52,10 +52,6 @@ defineProps({
     .text {
       padding-left: 10rpx;
       color: #666;
-    }
-
-    :deep(.uni-icons) {
-      color: $brand-theme-color !important;
     }
   }
 

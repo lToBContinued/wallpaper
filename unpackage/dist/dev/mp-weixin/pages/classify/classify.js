@@ -10,6 +10,17 @@ const _sfc_main = {
   __name: "classify",
   setup(__props) {
     const recommendList = common_vendor.ref([]);
+    common_vendor.onShareAppMessage(() => {
+      return {
+        title: "咸虾米壁纸，精选分类",
+        path: "/pages/classify/classify"
+      };
+    });
+    common_vendor.onShareTimeline(() => {
+      return {
+        title: "咸虾米壁纸，精选分类"
+      };
+    });
     const getRecommendList = async () => {
       const params = {
         pageSize: 20
@@ -37,4 +48,5 @@ const _sfc_main = {
   }
 };
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-6bcfa975"]]);
+_sfc_main.__runtimeHooks = 6;
 wx.createPage(MiniProgramPage);

@@ -11,7 +11,6 @@
       <uni-dateformat :date="new Date()" format="MM月dd日"></uni-dateformat>
     </view>
     <wallpaper-info
-      v-if="currentInfo"
       :currentInfo="currentInfo"
       :wallPaperClass="wallPaperClass"
       :classList="classList"
@@ -53,7 +52,14 @@ const props = defineProps({
 
 // 返回上一页
 const goBack = () => {
-  uni.navigateBack()
+  uni.navigateBack({
+    // 对于分享页的处理，直接返回首页
+    fail: () => {
+      uni.reLaunch({
+        url: '/pages/index/index'
+      })
+    }
+  })
 }
 </script>
 

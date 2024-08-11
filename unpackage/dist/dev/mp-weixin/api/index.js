@@ -16,7 +16,7 @@ const getNewsListService = (data = {}) => {
     data
   });
 };
-const getRecommendListService = (data) => {
+const getRecommendListService = (data = {}) => {
   return utils_request.request({
     url: "/classify",
     data

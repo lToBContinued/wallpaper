@@ -25,7 +25,8 @@ const _sfc_main = {
       return {
         a: common_vendor.p({
           type: "sound-filled",
-          size: "20"
+          size: "20",
+          color: "#28b389"
         }),
         b: common_vendor.f(newsList.value, (item, k0, i0) => {
           return {

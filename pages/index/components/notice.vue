@@ -1,7 +1,7 @@
 <template>
   <view class="notice">
     <view class="left">
-      <uni-icons type="sound-filled" size="20"></uni-icons>
+      <uni-icons type="sound-filled" size="20" color="#28b389"></uni-icons>
       <text class="text">公告</text>
     </view>
 
@@ -49,10 +49,6 @@ getNewList()
   .left,
   .right {
     @include flex-center;
-
-    :deep(.uni-icons) {
-      color: $brand-theme-color !important;
-    }
   }
 
   .left {

@@ -18,8 +18,7 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    },
-    "condition": true
+    }
   },
   "condition": {},
   "editorSetting": {

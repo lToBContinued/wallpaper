@@ -26,7 +26,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { onLoad, onReachBottom } from '@dcloudio/uni-app'
+import { onLoad, onUnload, onReachBottom, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import { getClassListService } from '/api/classlist'
 
 const currentPageName = ref('')
@@ -37,12 +37,14 @@ const params = {
   pageSize: 12
 }
 const noData = ref(false) // 判断是否还有数据
+let pageName = ref('') // 页面名称
 
 // 页面加载时修改导航栏标题并获取分类中壁纸列表
 onLoad((e) => {
   let { classid = null, name = null } = e
   params['classid'] = classid
   currentPageName.value = name
+  pageName.value = name
   // 修改导航栏标题
   uni.setNavigationBarTitle({
     title: name
@@ -50,10 +52,32 @@ onLoad((e) => {
   getClassList()
 })
 
+// 离开页面时清楚缓存
+onUnload(() => {
+  uni.removeStorageSync('storageClassList')
+})
+
+// 触底加载
 onReachBottom(() => {
   if (noData.value) return
   params['pageNum']++
   getClassList()
+})
+
+// 分享给好友
+onShareAppMessage(() => {
+  return {
+    title: `咸虾米壁纸-${pageName.value}`,
+    path: `/pages/classlist/classlist?classid=${params.classid}&name=${pageName.value}`
+  }
+})
+
+// 分享朋友圈
+onShareTimeline(() => {
+  return {
+    title: `咸虾米壁纸-${pageName.value}`,
+    query: `classid=${params.classid}&name=${pageName.value}`
+  }
 })
 
 // 获取分类中壁纸列表

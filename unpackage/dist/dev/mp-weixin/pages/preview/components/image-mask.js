@@ -42,10 +42,17 @@ const _sfc_main = {
   },
   setup(__props) {
     const goBack = () => {
-      common_vendor.index.navigateBack();
+      common_vendor.index.navigateBack({
+        // 对于分享页的处理，直接返回首页
+        fail: () => {
+          common_vendor.index.reLaunch({
+            url: "/pages/index/index"
+          });
+        }
+      });
     };
     return (_ctx, _cache) => {
-      return common_vendor.e({
+      return {
         a: common_vendor.p({
           type: "back",
           color: "#fff",
@@ -63,15 +70,13 @@ const _sfc_main = {
           date: /* @__PURE__ */ new Date(),
           format: "MM月dd日"
         }),
-        h: __props.currentInfo
-      }, __props.currentInfo ? {
-        i: common_vendor.p({
+        h: common_vendor.p({
           currentInfo: __props.currentInfo,
           wallPaperClass: __props.wallPaperClass,
           classList: __props.classList,
           currentIndex: __props.currentIndex
         })
-      } : {});
+      };
     };
   }
 };

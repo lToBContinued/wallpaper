@@ -19,7 +19,7 @@ export const getNewsListService = (data = {}) => {
   })
 }
 
-export const getRecommendListService = (data) => {
+export const getRecommendListService = (data = {}) => {
   return request({
     url: '/classify',
     data

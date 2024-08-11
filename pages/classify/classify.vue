@@ -9,11 +9,27 @@
 
 <script setup>
 import { ref } from 'vue'
+import { onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import ThemeItem from '/components/global/theme-item.vue'
 import CustomNavBar from '/components/global/custom-nav-bar.vue'
 import { getRecommendListService } from '/api'
 
 const recommendList = ref([]) // 分类列表
+
+// 分享给好友
+onShareAppMessage(() => {
+  return {
+    title: '咸虾米壁纸，精选分类',
+    path: '/pages/classify/classify'
+  }
+})
+
+// 分享朋友圈
+onShareTimeline(() => {
+  return {
+    title: '咸虾米壁纸，精选分类'
+  }
+})
 
 // 获取分类壁纸列表
 const getRecommendList = async () => {
