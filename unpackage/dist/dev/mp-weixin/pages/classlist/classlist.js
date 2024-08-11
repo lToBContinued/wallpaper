@@ -8,8 +8,9 @@ if (!Array) {
 }
 const _easycom_uni_load_more = () => "../../uni_modules/uni-load-more/components/uni-load-more/uni-load-more.js";
 if (!Math) {
-  _easycom_uni_load_more();
+  (Loading + _easycom_uni_load_more)();
 }
+const Loading = () => "../../components/global/loading.js";
 const _sfc_main = {
   __name: "classlist",
   setup(__props) {
@@ -74,21 +75,17 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: !classList.value.length && !noData.value
-      }, !classList.value.length && !noData.value ? {
-        b: common_vendor.p({
-          status: "loading"
-        })
-      } : {}, {
-        c: common_vendor.f(classList.value, (item, k0, i0) => {
+      }, !classList.value.length && !noData.value ? {} : {}, {
+        b: common_vendor.f(classList.value, (item, k0, i0) => {
           return {
             a: item.smallPicurl,
             b: item._id,
             c: `/pages/preview/preview?id=${item._id}&name=${currentPageName.value}`
           };
         }),
-        d: classList.value.length || noData.value
+        c: classList.value.length || noData.value
       }, classList.value.length || noData.value ? {
-        e: common_vendor.p({
+        d: common_vendor.p({
           status: noData.value ? "noMore" : "loading"
         })
       } : {});

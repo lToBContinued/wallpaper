@@ -1,14 +1,16 @@
 <template>
-  <navigator :url="pageUrl" class="row" :style="{ borderBottom: bottomLine ? '1px solid #eee' : 'none' }">
-    <view class="left">
-      <uni-icons :type="iconType" size="20" color="#28b389"></uni-icons>
-      <view class="text">{{ title }}</view>
-    </view>
+  <navigator :url="pageUrl" :style="{ borderBottom: bottomLine ? '1px solid #eee' : 'none' }">
+    <view class="row">
+      <view class="left">
+        <uni-icons :type="iconType" size="20" color="#28b389"></uni-icons>
+        <view class="text">{{ title }}</view>
+      </view>
 
-    <view class="right">
-      <view class="text">{{ num }}</view>
-      <uni-icons type="right" size="15"></uni-icons>
-      <slot></slot>
+      <view class="right">
+        <view class="text">{{ num }}</view>
+        <uni-icons type="right" size="15"></uni-icons>
+        <slot></slot>
+      </view>
     </view>
   </navigator>
 </template>
