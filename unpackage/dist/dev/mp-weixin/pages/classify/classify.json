@@ -4,6 +4,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "theme-item": "../../components/global/theme-item",
-    "custom-nav-bar": "../../components/global/custom-nav-bar"
+    "custom-nav-bar": "../../components/global/custom-nav-bar",
+    "loading": "../../components/global/loading"
   }
 }

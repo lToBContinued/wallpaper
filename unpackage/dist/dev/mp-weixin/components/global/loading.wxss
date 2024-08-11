@@ -1,12 +1,23 @@
 
 .loadBox.data-v-a059e9fb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.box.data-v-a059e9fb {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .loader.data-v-a059e9fb {
-  margin-bottom: 30rpx;
+  margin-bottom: 20rpx;
   width: 60rpx;
   aspect-ratio: 0.577;
   -webkit-clip-path: polygon(0 0, 100% 100%, 0 100%, 100% 0);

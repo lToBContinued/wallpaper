@@ -2,10 +2,11 @@
 const common_vendor = require("../../common/vendor.js");
 const api_index = require("../../api/index.js");
 if (!Math) {
-  (CustomNavBar + ThemeItem)();
+  (CustomNavBar + ThemeItem + Loading)();
 }
 const ThemeItem = () => "../../components/global/theme-item.js";
 const CustomNavBar = () => "../../components/global/custom-nav-bar.js";
+const Loading = () => "../../components/global/loading.js";
 const _sfc_main = {
   __name: "classify",
   setup(__props) {
@@ -30,11 +31,13 @@ const _sfc_main = {
     };
     getRecommendList();
     return (_ctx, _cache) => {
-      return {
+      return common_vendor.e({
         a: common_vendor.p({
           title: "分类"
         }),
-        b: common_vendor.f(recommendList.value, (item, k0, i0) => {
+        b: recommendList.value.length !== 0
+      }, recommendList.value.length !== 0 ? {
+        c: common_vendor.f(recommendList.value, (item, k0, i0) => {
           return {
             a: item._id,
             b: "6bcfa975-1-" + i0,
@@ -43,7 +46,7 @@ const _sfc_main = {
             })
           };
         })
-      };
+      } : {});
     };
   }
 };

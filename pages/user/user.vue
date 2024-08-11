@@ -46,11 +46,7 @@
       ></info-list>
     </view>
   </view>
-  <view class="loadingLayout" v-else>
-    <view class="loading">
-      <loading></loading>
-    </view>
-  </view>
+  <loading v-else></loading>
 </template>
 
 <script setup>
@@ -123,19 +119,6 @@ getUserInfo()
     width: 100%;
     height: 100rpx;
     opacity: 0;
-  }
-}
-
-.loadingLayout {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-
-  .loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 }
 </style>

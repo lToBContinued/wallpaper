@@ -5,7 +5,6 @@
     <banner></banner>
     <!--公告-->
     <notice></notice>
-
     <!--每日推荐-->
     <view class="select">
       <common-title>
@@ -27,7 +26,6 @@
         </scroll-view>
       </view>
     </view>
-
     <!--专题-->
     <view class="theme">
       <common-title>

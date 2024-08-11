@@ -1,12 +1,26 @@
 <template>
   <view class="loadBox">
-    <view class="loader"></view>
-    <view class="text">加载中……</view>
+    <view class="box">
+      <view class="loader"></view>
+      <view class="text">加载中……</view>
+    </view>
   </view>
 </template>
 
 <style scoped>
 .loadBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +28,7 @@
 }
 
 .loader {
-  margin-bottom: 30rpx;
+  margin-bottom: 20rpx;
   width: 60rpx;
   aspect-ratio: 0.577;
   clip-path: polygon(0 0, 100% 100%, 0 100%, 100% 0);
@@ -42,4 +56,3 @@
   }
 }
 </style>
-<script setup lang="ts"></script>

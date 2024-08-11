@@ -1,9 +1,10 @@
 <template>
   <view class="classLayout pageBg">
     <custom-nav-bar title="分类"></custom-nav-bar>
-    <view class="classify">
+    <view class="classify" v-if="recommendList.length !== 0">
       <theme-item v-for="item in recommendList" :key="item._id" :item="item"></theme-item>
     </view>
+    <loading v-else></loading>
   </view>
 </template>
 
@@ -13,6 +14,7 @@ import { onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import ThemeItem from '/components/global/theme-item.vue'
 import CustomNavBar from '/components/global/custom-nav-bar.vue'
 import { getRecommendListService } from '/api'
+import Loading from '/components/global/loading.vue'
 
 const recommendList = ref([]) // 分类列表
 
